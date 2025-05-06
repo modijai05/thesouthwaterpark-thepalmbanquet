@@ -59,6 +59,8 @@
             max-height: 280px;
             width: auto;
             margin-bottom: 25px;
+            max-width: 100%; /* ✅ Added for responsive images */
+            height: auto;     /* ✅ Ensures image scales properly */
         }
 
         .split h1 {
@@ -166,6 +168,11 @@
             .split img {
                 max-height: 150px;
             }
+
+            .btn {
+                font-size: 0.9rem;
+                padding: 10px 25px;
+            }
         }
 
         @keyframes fadeInUp {
@@ -177,15 +184,14 @@
 <body>
     <div class="split-container">
         <div class="split waterpark">
-          <img src="The_South_Water_Park_Logo.png" alt="Water Park Logo">
-
+            <img src="The_South_Water_Park_Logo.png" alt="Water Park Logo">
             <h1>The South Water Park</h1>
             <p>Dive into the fun! Rides, wave pools, and unforgettable family memories.</p>
             <a href="waterpark.html" class="btn">Visit Water Park</a>
         </div>
 
         <div class="split banquet">
-           <img src="Palm_Logo.png" alt="Banquet Logo">
+            <img src="Palm_Logo.png" alt="Banquet Logo">
             <h1>The Palm Banquet</h1>
             <p>Host elegant events, dream weddings, and unforgettable celebrations.</p>
             <a href="banquet.html" class="btn">Visit Banquet</a>
