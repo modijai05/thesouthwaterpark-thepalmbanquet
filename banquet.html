@@ -145,7 +145,28 @@
             .social-media a:hover {
                 color: #d4af37;
             }
-        
+        .whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    background-color: #25D366;
+    border-radius: 50%;
+    padding: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-float img {
+    width: 30px;
+    height: 30px;
+    display: block;
+}
+
             .call-now-button {
                 text-align: center;
                 margin: 40px 0 20px;
@@ -222,6 +243,10 @@
     </div>
     <div class="call-now-button">
         <a href="tel:+919462015450">Call Now 📞: 9462015450</a>
+        <a href="https://wa.me/919462015450" class="whatsapp-float" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
+
     </div>
     
 
