@@ -1,260 +1,480 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The South Water Park</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The South Water Park — Jaipur</title>
+<meta name="description" content="The South Water Park — slides, spray pool, kids zones, food & family fun in Jaipur." />
+<meta name="theme-color" content="#007ba7" />
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to top, #d0f4f7, #e8faff);
-            color: #333;
-            animation: fadeIn 1.2s ease-in-out;
-        }
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        header {
-            text-align: center;
-            padding: 30px 20px 20px;
-            background: url('waterpark-banner.jpg') center/cover no-repeat;
-            color: white;
-            position: relative;
-        }
-
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: rgba(0, 123, 183, 0.6);
-            z-index: 1;
-        }
-
-        header img {
-            width: 250px; /* Increased logo width */
-            z-index: 2;
-            position: relative;
-            filter: brightness(1.5); /* Increases brightness */
-        }
-
-        header h1 {
-            font-size: 3rem;
-            margin-top: 15px;
-            font-weight: 700;
-            z-index: 2;
-            position: relative;
-        }
-
-        header p {
-            font-size: 1.3rem;
-            z-index: 2;
-            position: relative;
-            margin-top: 10px;
-        }
-
-        .content {
-            max-width: 1100px;
-            margin: 50px auto;
-            padding: 40px;
-            background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .section {
-            margin-bottom: 45px;
-        }
-
-        .section h2 {
-            font-size: 2.2rem;
-            color: #007ba7;
-            margin-bottom: 20px;
-            border-left: 6px solid #00bcd4;
-            padding-left: 15px;
-        }
-
-        .section ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .section ul li {
-            font-size: 1.1rem;
-            margin: 10px 0;
-            position: relative;
-            padding-left: 25px;
-        }
-
-        .section ul li::before {
-            content: "🌊";
-            position: absolute;
-            left: 0;
-        }
-
-        .section p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .map-container {
-            width: 100%;
-            height: 400px;
-            margin-top: 20px;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        footer {
-            background: #007ba7;
-            color: #e0f7fa;
-            padding: 25px 0;
-            text-align: center;
-        }
-
-        .social-media {
-            margin-top: 10px;
-        }
-
-        .social-media a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: white;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-media a:hover {
-            color: #ffc107;
-        }
-        .whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 999;
-    background-color: #25D366;
-    border-radius: 50%;
-    padding: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+<style>
+:root{
+  --teal:#007ba7;
+  --aqua:#00bcd4;
+  --cream:#e8faff;
+  --white:#ffffff;
+  --card:#f3fdff;
+  --dark:#0e2e3a;
+  --muted:#5d7e8a;
+  --radius:14px;
+  --shadow:0 10px 30px rgba(0,0,0,0.15);
+  --max-width:1200px;
 }
 
-.whatsapp-float:hover {
-    transform: scale(1.1);
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Poppins",sans-serif;
+  background:linear-gradient(to top,#d0f4f7,#e8faff);
+  color:var(--dark);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-.whatsapp-float img {
-    width: 30px;
-    height: 30px;
-    display: block;
+/* Tooltip (data-tooltip) */
+[data-tooltip]{ position:relative; cursor:default; }
+[data-tooltip]:hover::after{
+  content: attr(data-tooltip);
+  position:absolute; left:50%; transform:translateX(-50%);
+  bottom:calc(100% + 10px);
+  background:rgba(12,34,40,0.95); color:#fff; padding:6px 8px; border-radius:6px;
+  white-space:nowrap; font-size:13px; z-index:9999; box-shadow:0 6px 20px rgba(0,0,0,0.2);
+}
+[data-tooltip]:hover::before{
+  content:""; position:absolute; left:50%; transform:translateX(-50%);
+  bottom:calc(100% + 4px); border:6px solid transparent; border-top-color:rgba(12,34,40,0.95); z-index:9999;
 }
 
-        .call-now-button {
-            text-align: center;
-            margin: 40px 0 20px;
-        }
-        
-        .call-now-button a {
-            background-color: #007ba7;
-            color: white;
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            display: inline-block;
-        }
-        
-        .call-now-button a:hover {
-            background-color: #005f87;
-            transform: scale(1.05);
-            cursor: pointer;
-        }
-        
-    </style>
+/* Fade-up animation */
+.fade-up{opacity:0;transform:translateY(26px);animation:fadeUp 0.9s forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+
+/* Header */
+header.site-header{ position:sticky; top:0; z-index:200; background:var(--teal); border-bottom:4px solid var(--aqua); box-shadow:0 6px 20px rgba(0,0,0,0.12); }
+.header-inner{ max-width:var(--max-width); margin:auto; display:flex; align-items:center; padding:10px 16px; gap:16px; }
+
+/* Logo */
+.logo-box{ display:flex; align-items:center; }
+.logo-box img{ height:105px; width:auto; display:block; } /* Increased logo size */
+
+/* Brand title - single line, no wrap */
+.brand-title{
+  color:white;
+  font-family:"Playfair Display";
+  font-size:26px;
+  font-weight:700;
+  margin-left:8px;
+  white-space:nowrap;            /* prevent wrapping */
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+@media(max-width:760px){
+  /* scale down so it stays on one line on smaller screens */
+  .brand-title{ font-size:18px; }
+}
+@media(max-width:420px){
+  .brand-title{ font-size:16px; }
+}
+
+/* Nav & CTAs */
+nav.primary{ margin-left:auto; display:flex; gap:14px; }
+nav.primary a{ color:white; font-weight:600; padding:8px 10px; border-radius:6px; }
+nav.primary a:hover{ background:white; color:var(--teal); }
+.menu-btn{ display:none; background:none; border:none; color:white; font-size:28px; }
+@media(max-width:980px){ nav.primary{ display:none; } .menu-btn{ display:block; } }
+
+.header-ctas{ display:flex; gap:12px; margin-left:12px; align-items:center; }
+.header-ctas a{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:8px; font-weight:700; color:white; }
+.call-btn{ background:rgba(255,255,255,0.18); }
+.whatsapp-btn{ background:var(--aqua); color:#013d48; }
+.header-ctas img{ width:18px; height:18px; }
+
+/* Mobile nav overlay */
+#mobileNav{ position:fixed; inset:0; background:rgba(0,0,0,0.92); padding:28px; display:none; z-index:300; }
+#mobileNav a{ display:block; color:white; font-size:20px; margin:12px 0; font-weight:700; }
+#mobileClose{ position:absolute; right:18px; top:18px; background:none; border:none; color:white; font-size:32px; }
+
+/* Hero / slideshow */
+.hero{ position:relative; min-height:78vh; overflow:hidden; }
+.slides{ position:absolute; inset:0; }
+.slides img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .9s; }
+.slides img.active{ opacity:1; }
+
+/* Hero overlay */
+.hero-overlay{ position:absolute; left:20px; bottom:40px; background:linear-gradient(180deg,rgba(0,0,0,0.35),rgba(0,0,0,0.62)); padding:20px; border-radius:12px; max-width:680px; }
+.hero-overlay h1{ font-family:"Playfair Display"; color:white; font-size:34px; }
+.hero-overlay p{ color:#eaf9fb; margin-top:8px; }
+
+/* Buttons */
+.btn{ padding:10px 14px; border-radius:10px; font-weight:800; display:inline-flex; gap:8px; align-items:center; cursor:pointer; transition:transform .18s ease,box-shadow .18s ease; }
+.btn.book{ background:var(--aqua); color:#013d48; }
+.btn.ghost{ background:transparent; color:white; border:2px solid rgba(255,255,255,0.12); }
+.btn:hover{ transform:translateY(-4px); box-shadow:0 12px 30px rgba(0,0,0,0.18); }
+
+/* Container */
+.container{ max-width:var(--max-width); margin:auto; padding:28px 16px; }
+
+/* Section title */
+.section-title{ font-size:26px; color:var(--teal); font-weight:700; margin-bottom:14px; }
+
+/* Gallery grid - EXACTLY 4 images here */
+.gallery-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+.gallery-grid img{ width:100%; height:320px; object-fit:cover; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.12); transition:transform .25s,box-shadow .25s; }
+.gallery-grid img:hover{ transform:scale(1.03); box-shadow:0 22px 48px rgba(0,0,0,0.22); }
+
+/* Services */
+.services-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+.service-card{ background:var(--white); padding:12px; border-radius:12px; box-shadow:0 12px 30px rgba(0,0,0,0.08); text-align:center; transition:transform .2s,box-shadow .2s; }
+.service-card:hover{ transform:translateY(-6px); box-shadow:0 24px 50px rgba(0,0,0,0.14); }
+.service-card img{ width:100%; height:200px; object-fit:cover; border-radius:10px; }
+
+/* Time box */
+.time-box{ background:var(--white); padding:18px; border-radius:12px; box-shadow:var(--shadow); margin-bottom:18px; }
+
+/* Pricing (stable + hover) */
+.pricing-box{ background:var(--white); padding:18px; border-radius:12px; box-shadow:var(--shadow); }
+.pricing-card{ background:var(--cream); padding:14px; border-radius:12px; margin-bottom:12px; border-left:6px solid var(--teal); transition:transform .18s,box-shadow .18s; }
+.pricing-card:hover{ transform:translateY(-6px); box-shadow:0 20px 44px rgba(0,0,0,0.14); }
+.pricing-card h3{ color:var(--teal); margin-bottom:6px; font-weight:700; }
+.pricing-card p{ color:var(--muted); font-weight:700; }
+
+/* Contact & map */
+.contact-card{ background:var(--white); padding:18px; border-radius:12px; box-shadow:var(--shadow); }
+.map-wrap{ height:360px; border-radius:12px; overflow:hidden; margin-top:12px; }
+.map-wrap iframe{ width:100%; height:100%; border:0; }
+
+/* Floating Book Now */
+.floating{ position:fixed; right:16px; bottom:16px; z-index:220; }
+.floating a{ display:inline-flex; padding:12px 14px; border-radius:12px; background:linear-gradient(135deg,var(--aqua),var(--teal)); color:white; font-weight:800; box-shadow:var(--shadow); transition:transform .18s; }
+.floating a:hover{ transform:translateY(-6px); }
+
+/* Lightbox */
+.lightbox{ position:fixed; inset:0; background:rgba(0,0,0,0.9); display:none; align-items:center; justify-content:center; z-index:800; }
+.lightbox.active{ display:flex; }
+.lightbox img{ max-width:96%; max-height:96%; border-radius:12px; }
+
+/* Modal */
+.modal{ position:fixed; inset:0; background:rgba(0,0,0,0.45); display:none; align-items:center; justify-content:center; z-index:850; }
+.modal.active{ display:flex; }
+.modal-content{ background:white; padding:18px; border-radius:12px; width:95%; max-width:520px; }
+.modal-content input, .modal-content select, .modal-content textarea{ width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #d5eaf0; }
+
+/* Footer */
+footer{ background:var(--teal); color:white; padding:20px; text-align:center; }
+footer a{ color:white; font-weight:700; margin:0 10px; display:inline-flex; align-items:center; gap:8px; }
+footer img{ width:18px; height:18px; }
+
+/* Consent (hidden) */
+#consentBanner{ position:fixed; left:12px; right:12px; bottom:18px; background:white; padding:12px; border-radius:12px; display:none; box-shadow:var(--shadow); z-index:900; }
+
+/* Responsive tweaks */
+@media (max-width:860px){
+  .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+  .brand-title{ font-size:20px; }
+}
+@media (max-width:480px){
+  .logo-box img{ height:80px; }
+  .hero{ min-height:86vh; }
+  .hero-overlay h1{ font-size:22px; }
+  .gallery-grid img{ height:190px; }
+  .map-wrap{ height:260px; }
+  .brand-title{ font-size:16px; }
+}
+</style>
 </head>
 <body>
-    <header>
-        <img src="The_South_Water_Park_Logo.png" alt="Water Park Logo">
-        <h1>The South Water Park</h1>
-        <p>🌞 Summer Splash – Dive into fun at South Waterpark! 💦🎢</p>
-    </header>
 
-    <div class="content">
-        <div class="section">
-            <h2>What's Waiting for You?</h2>
-            <ul>
-                <li>Thrilling Water Slides</li>
-                <li>Bucket Waterfall</li>
-                <li>Kids’ Water Pool</li>
-                <li>Fun Activities</li>
-                <li>Delicious Food & Refreshing Drinks</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Timings</h2>
-            <p>09:00 AM – 08:00 PM (Valid for 4-5 Hours)</p>
-        </div>
-
-        <div class="section">
-    <h2>New Entry Pricing</h2>
-    <ul>
-        <li>₹150/- Per Person for 1 Hour (Same price for all)</li>
-        <li>Kids Below 2.5ft – FREE!</li>
-        <li>₹200/- Per Kid without Food</li>
-        <li>₹300/- Per Adult without Food</li>
-        <li>₹350/- Per Kid with Fast Food</li>
-        <li>₹450/- Per Adult with Fast Food</li>
-        <li>₹500/- Per Kid with Main Food</li>
-        <li>₹600/- Per Adult with Main Food</li>
-        <li>Sunday: ₹50 Extra on All Tickets (Except ₹150/-)</li>
-    </ul>
-        </div>
-
-        <div class="section">
-            <h2>Address & Contact</h2>
-            <p><strong>Address:</strong> The South Water Park QR8V+855 Patel Nagar, Goner Rd, Sitapura Industrial Area, Sitapura, Jaipur, Murlipura at Mishra Ka Barh, Rajasthan 302022</p>
-            <p><strong>Book Now:</strong> <a href="tel:+919462015450" style="color:#007ba7; text-decoration:none;">9462015450</a>, <a href="tel:+919414071245" style="color:#007ba7; text-decoration:none;">9414071245</a></p>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps?q=QR8V%2B855%20Patel%20Nagar%2C%20Goner%20Rd%2C%20Sitapura%20Industrial%20Area%2C%20Sitapura%2C%20Jaipur%2C%20Murlipura%20at%20Mishra%20Ka%20Barh%2C%20Rajasthan%20302022&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="header-inner" id="headerInner">
+    <div class="logo-box">
+      <img src="The_South_Water_Park_Logo.png" id="siteLogo" alt="The South Water Park logo">
     </div>
-    <div class="call-now-button">
-        <a href="tel:+919462015450">  Call Now 📞: 9462015450</a>
-        <a href="https://wa.me/919462015450" class="whatsapp-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-</a>
 
-    </div>    
+    <div class="brand-title" aria-label="The South Water Park">The South Water Park</div>
 
-    <footer>
-        <p>&copy; 2025 The South Water Park. All rights reserved.</p>
-        <div class="social-media">
-            <a href="https://www.facebook.com/thesouthwaterparkpalmbanquet/" target="_blank">Facebook</a>
-            <a href="https://www.instagram.com/thesouthwaterpark_palmbanquet/" target="_blank">Instagram</a>
-            <a href="https://g.co/kgs/Wb2D6kY" target="_blank">Google</a>
-        </div>
-    </footer>
+    <nav class="primary" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+
+    <div class="header-ctas">
+      <a class="call-btn" href="tel:+919462015450" data-tooltip="Call us to book">
+        <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="">Call
+      </a>
+      <a class="whatsapp-btn" href="https://wa.me/919462015450" target="_blank" rel="noopener" data-tooltip="Message on WhatsApp">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="">WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav id="mobileNav" aria-hidden="true">
+  <button id="mobileClose" aria-label="Close menu">×</button>
+  <a href="#home">Home</a>
+  <a href="#highlights">Highlights</a>
+  <a href="#services">Services</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#contact">Contact</a>
+  <a href="tel:+919462015450">Call Now</a>
+  <a href="https://wa.me/919462015450">WhatsApp</a>
+</nav>
+
+<!-- HERO: slideshow (2nd and 4th swapped) -->
+<main id="home" class="hero" role="main" tabindex="-1">
+  <div class="slides" aria-hidden="false">
+    <img src="front_gate.png" alt="Front gate" class="active" loading="lazy">
+    <img src="kids_pool.jpg" alt="Kids pool" loading="lazy">        <!-- was 4th, now 2nd -->
+    <img src="spray_pool.jpg" alt="Spray pool" loading="lazy">
+    <img src="full_park.jpg" alt="Full park view" loading="lazy">   <!-- was 2nd, now 4th -->
+  </div>
+
+  <div class="hero-overlay fade-up" role="region" aria-live="polite">
+    <h1>Unlimited Fun Awaits You!</h1>
+    <p>Slides, spray pool, kids attractions, food zones & more — Jaipur’s favorite summer destination.</p>
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn book" id="openBookBtn" data-tooltip="Book via WhatsApp">Book Now</button>
+      <a class="btn ghost" href="#contact" data-tooltip="Get directions">Directions</a>
+    </div>
+  </div>
+</main>
+
+<!-- TIME -->
+<section class="container fade-up" aria-labelledby="timeTitle">
+  <div class="time-box" id="timeTitle">
+    <h2>Opening Hours</h2>
+    <p><strong>09:00 AM – 08:00 PM</strong> (Daily) • Ticket valid for 4–5 hours</p>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS (ONLY 4 PHOTOS) -->
+<section class="container" id="highlights" aria-labelledby="highTitle">
+  <h2 class="section-title fade-up" id="highTitle">Venue Highlights</h2>
+
+  <div class="gallery-grid fade-up" role="list">
+    <img src="front_gate.png" alt="Front Gate" loading="lazy" data-tooltip="Main entrance & front gate">
+    <img src="kids_pool.jpg" alt="Kids Pool" loading="lazy" data-tooltip="Kids play pool">
+    <img src="spray_pool.jpg" alt="Spray Pool" loading="lazy" data-tooltip="Spray pool area">
+    <img src="full_park.jpg" alt="Full park view" loading="lazy" data-tooltip="Entire park view">
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="container" id="services" aria-labelledby="servicesTitle">
+  <h2 class="section-title fade-up" id="servicesTitle">Services</h2>
+
+  <div class="services-grid fade-up" role="list">
+    <div class="service-card" data-tooltip="Fast-paced slides for adults & teens">
+      <img src="full_park.jpg" alt="Thrilling Slides">
+      <h3>Thrilling Slides</h3>
+      <p>High-adrenaline rides for teens & adults.</p>
+    </div>
+
+    <div class="service-card" data-tooltip="Safe zone for little ones">
+      <img src="kids_pool.jpg" alt="Kids Pool">
+      <h3>Kids Play Pool</h3>
+      <p>Shallow, supervised splash area for children.</p>
+    </div>
+
+    <div class="service-card" data-tooltip="Fountains & spray features">
+      <img src="spray_pool.jpg" alt="Spray Pool">
+      <h3>Spray Pool</h3>
+      <p>Interactive spray fountains & splash fun.</p>
+    </div>
+
+    <div class="service-card" data-tooltip="Multiple stalls & cuisines">
+      <img src="full_park.jpg" alt="Food Courts">
+      <h3>Food Courts</h3>
+      <p>Snacks, meals & refreshing beverages.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="container" id="pricing" aria-labelledby="pricingTitle">
+  <h2 class="section-title fade-up" id="pricingTitle">Pricing</h2>
+
+  <div class="pricing-box fade-up" aria-live="polite">
+    <div class="pricing-card" data-tooltip="Entry basic fare — 1 hour validity">
+      <h3>Base Ticket</h3>
+      <p>₹150 — Per Person (1 Hour)</p>
+    </div>
+
+    <div class="pricing-card" data-tooltip="Kids under 4 feet go free">
+      <h3>Kids (Below 4 Ft)</h3>
+      <p>FREE</p>
+    </div>
+
+    <div class="pricing-card" data-tooltip="Choose with/without food options">
+      <h3>Kids Ticket (Below 4 Ft)</h3>
+      <p>₹200 — Without Food<br>₹350 — With Fast Food<br>₹500 — With Main Food</p>
+    </div>
+
+    <div class="pricing-card" data-tooltip="Choose adult ticket options">
+      <h3>Adult Ticket</h3>
+      <p>₹300 — Without Food<br>₹450 — With Fast Food<br>₹600 — With Main Food</p>
+    </div>
+
+    <div class="pricing-card" data-tooltip="Extra Sunday surcharge">
+      <h3>Sunday Charges</h3>
+      <p>₹50 Extra on all tickets (Except ₹150 base)</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="container" id="contact" aria-labelledby="contactTitle">
+  <h2 class="section-title fade-up" id="contactTitle">Get in Touch</h2>
+
+  <div class="contact-card fade-up">
+    <p><strong>Address:</strong><br>
+      QR8V+855 Patel Nagar, Goner Rd, Sitapura Industrial Area, Jaipur
+    </p>
+
+    <p style="margin-top:10px"><strong>Book Now:</strong><br>
+      <a href="tel:+919462015450" style="color:var(--teal);font-weight:700" data-tooltip="Call to book">+91 94620 15450</a><br>
+      <a href="tel:+919414071245" style="color:var(--teal);font-weight:700" data-tooltip="Alternate number">+91 94140 71245</a>
+    </p>
+
+    <div class="map-wrap" aria-hidden="false">
+      <iframe 
+        src="https://www.google.com/maps?q=QR8V%2B855%20Patel%20Nagar%2C%20Goner%20Rd%2C%20Jaipur&output=embed"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <p>© 2026 The South Water Park</p>
+  <div style="margin-top:12px">
+    <a href="https://www.facebook.com/thesouthwaterparkpalmbanquet/" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="">Facebook</a>
+    <a href="https://www.instagram.com/thepalmbanquethall/" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="">Instagram</a>
+    <a href="https://wa.me/919462015450" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="">WhatsApp</a>
+    <a href="https://g.co/kgs/Wb2D6kY" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="">Google</a>
+  </div>
+</footer>
+
+<!-- FLOATING BOOK -->
+<div class="floating">
+  <a id="floatBook" data-tooltip="Quick book on WhatsApp">Book Now</a>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
+  <img id="lightboxImg" alt="">
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="modal" id="bookingModal" aria-hidden="true">
+  <div class="modal-content" role="document">
+    <h3>Quick Enquiry</h3>
+    <input id="b_name" type="text" placeholder="Your name">
+    <select id="b_event"><option disabled selected>Visit Type</option><option>Family Visit</option><option>Group Visit</option><option>School Trip</option><option>Birthday</option></select>
+    <input id="b_date" type="date">
+    <input id="b_guests" type="number" placeholder="Number of people">
+    <textarea id="b_msg" rows="3" placeholder="Any notes"></textarea>
+
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:6px">
+      <button id="modalCancel" style="padding:8px 12px;border-radius:8px;background:#eee;border:none">Cancel</button>
+      <button id="modalSend" style="padding:8px 12px;border-radius:8px;background:var(--aqua);color:#013d48;border:none">Send via WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<!-- Consent banner (hidden by default) -->
+<div id="consentBanner" style="display:none"></div>
+
+<!-- SCRIPTS -->
+<script>
+  // show year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // mobile nav
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileClose = document.getElementById('mobileClose');
+  menuBtn && menuBtn.addEventListener('click', ()=> { mobileNav.style.display = 'block'; mobileNav.setAttribute('aria-hidden','false'); });
+  mobileClose && mobileClose.addEventListener('click', ()=> { mobileNav.style.display = 'none'; mobileNav.setAttribute('aria-hidden','true'); });
+
+  // slideshow (swapped 2nd & 4th)
+  const slides = document.querySelectorAll('.slides img');
+  let idx = 0;
+  if (slides.length){
+    slides.forEach((s,i)=> s.classList.toggle('active', i===0));
+    setInterval(()=> {
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    }, 4200);
+  }
+
+  // lightbox for gallery images
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightboxImg');
+  document.querySelectorAll('.gallery-grid img').forEach(img=>{
+    img.addEventListener('click', ()=> {
+      lbImg.src = img.src;
+      lb.classList.add('active');
+      lb.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  lb.addEventListener('click', ()=> {
+    lb.classList.remove('active');
+    lb.setAttribute('aria-hidden','true');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  });
+
+  // booking modal -> WhatsApp
+  const bookingModal = document.getElementById('bookingModal');
+  const openBookBtn = document.getElementById('openBookBtn');
+  const floatBook = document.getElementById('floatBook');
+  const modalCancel = document.getElementById('modalCancel');
+  const modalSend = document.getElementById('modalSend');
+  openBookBtn && openBookBtn.addEventListener('click', ()=> { bookingModal.classList.add('active'); bookingModal.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; });
+  floatBook && floatBook.addEventListener('click', ()=> { bookingModal.classList.add('active'); bookingModal.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; });
+
+  modalCancel && modalCancel.addEventListener('click', ()=> { bookingModal.classList.remove('active'); bookingModal.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; });
+
+  modalSend && modalSend.addEventListener('click', ()=>{
+    const name = encodeURIComponent(document.getElementById('b_name').value || '—');
+    const type = encodeURIComponent(document.getElementById('b_event').value || '—');
+    const date = encodeURIComponent(document.getElementById('b_date').value || '—');
+    const guests = encodeURIComponent(document.getElementById('b_guests').value || '—');
+    const msg = encodeURIComponent(document.getElementById('b_msg').value || '—');
+
+    const text = `Booking Enquiry%0AName:${name}%0AType:${type}%0ADate:${date}%0APeople:${guests}%0ANotes:${msg}`;
+    window.open(`https://wa.me/919462015450?text=${text}`, '_blank');
+  });
+
+  // keyboard accessibility: Esc closes menus/modals/lightbox
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      if(bookingModal.classList.contains('active')){ bookingModal.classList.remove('active'); bookingModal.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; }
+      if(lb.classList.contains('active')){ lb.classList.remove('active'); lb.setAttribute('aria-hidden','true'); lbImg.src=''; document.body.style.overflow = ''; }
+      if(mobileNav.style.display === 'block'){ mobileNav.style.display = 'none'; mobileNav.setAttribute('aria-hidden','true'); }
+    }
+  });
+
+  // safety: check logo presence
+  const siteLogo = document.getElementById('siteLogo');
+  setTimeout(()=> {
+    if(!siteLogo.complete || siteLogo.naturalWidth === 0) {
+      console.warn('Logo not loaded (ensure The_South_Water_Park_Logo.png exists in repo root).');
+    }
+  }, 1200);
+</script>
 </body>
 </html>
