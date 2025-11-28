@@ -4,401 +4,387 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>The South Water Park — Jaipur</title>
-<meta name="description" content="The South Water Park — slides, spray pool, kids pool, family fun in Jaipur. Book now." />
-<meta name="theme-color" content="#007BA7" />
+<meta name="description" content="The South Water Park — slides, spray pool, kids zones, food & family fun in Jaipur." />
+<meta name="theme-color" content="#007ba7" />
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-  :root{
-    --teal:#007BA7;
-    --aqua:#00BFD8;
-    --cream:#F5F5DC;
-    --gold:#D4AF37;
-    --white:#ffffff;
-    --muted:#566768;
-    --max-width:1200px;
-    --radius:12px;
-    --shadow: 0 14px 40px rgba(0,0,0,0.12);
-  }
+:root{
+  --teal:#007ba7;
+  --aqua:#00bcd4;
+  --cream:#e8faff;
+  --white:#ffffff;
+  --card:#f3fdff;
+  --dark:#0e2e3a;
+  --muted:#5d7e8a;
+  --radius:12px;
+  --shadow:0 10px 30px rgba(0,0,0,0.15);
+  --max-width:1200px;
+}
 
-  /* Reset */
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{
-    font-family:"Poppins",system-ui,Arial;
-    color:#0b2b33;
-    background:linear-gradient(180deg,#eaf9fb,#f6ffff);
-    -webkit-font-smoothing:antialiased;
-  }
+/* reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Poppins",sans-serif;
+  background:linear-gradient(to top,#d0f4f7,#e8faff);
+  color:var(--dark);
+  -webkit-font-smoothing:antialiased;
+}
 
-  a{color:inherit}
+/* small tooltip helper */
+[data-tooltip]{position:relative;cursor:default}
+[data-tooltip]:hover::after{
+  content:attr(data-tooltip);
+  position:absolute;left:50%;transform:translateX(-50%);
+  bottom:calc(100% + 10px);
+  background:rgba(12,34,40,0.95);color:#fff;padding:6px 8px;border-radius:6px;font-size:13px;white-space:nowrap;z-index:9999;
+}
+[data-tooltip]:hover::before{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:calc(100% + 4px);border:6px solid transparent;border-top-color:rgba(12,34,40,0.95);z-index:9999}
 
-  /* Header */
-  .site-header{
-    position:sticky;top:0;z-index:220;
-    background:var(--teal);
-    border-bottom:3px solid var(--gold);
-    box-shadow:0 6px 18px rgba(0,0,0,0.12);
-  }
-  .header-inner{
-    max-width:var(--max-width);margin:0 auto;padding:10px 16px;
-    display:flex;align-items:center;gap:16px;
-  }
+/* fade */
+.fade-up{opacity:0;transform:translateY(26px);animation:fadeUp .9s forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}}
 
-  /* Logo and brand */
-  .logo-wrap{display:flex;align-items:center;gap:12px;min-width:0}
-  .logo-box{flex:0 0 auto;display:flex;align-items:center}
-  .logo-box img{height:96px;width:auto;display:block}
-  .brand-title{
-    font-family:"Playfair Display",serif;color:var(--gold);font-size:28px;font-weight:800;letter-spacing:0.6px;
-    text-transform:uppercase;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  }
+/* ---------- HEADER (desktop preserved) ---------- */
+header.site-header{
+  position:sticky;top:0;z-index:200;background:var(--teal);border-bottom:4px solid var(--aqua);box-shadow:0 6px 20px rgba(0,0,0,0.12)
+}
+.header-inner{
+  max-width:var(--max-width);
+  margin:auto;
+  display:flex;
+  align-items:center;
+  padding:10px 16px;
+  gap:16px;
+}
 
-  /* Nav & CTAs */
-  .nav-wrap{margin-left:auto;display:flex;align-items:center;gap:14px}
-  nav.primary{display:flex;gap:12px;align-items:center}
-  nav.primary a{color:#fffbd6;padding:8px 10px;border-radius:8px;font-weight:600}
-  nav.primary a:hover{background:var(--gold);color:var(--teal)}
-  .menu-btn{display:none;background:transparent;border:0;color:#fff;font-size:28px;cursor:pointer}
-  .header-ctas{display:flex;gap:10px;align-items:center}
-  .cta{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;font-weight:700;color:#012e33;text-decoration:none}
-  .cta.call{background:rgba(255,255,255,0.9);color:var(--teal)}
-  .cta.wa{background:linear-gradient(135deg,var(--aqua),var(--teal));color:#012e33}
-  .cta img{width:18px;height:18px;display:block}
+/* logo */
+.logo-box{display:flex;align-items:center;flex:0 0 auto}
+.logo-box img{height:105px;width:auto;display:block}
 
-  /* MOBILE: hide brand-title, show menu button; keep logo big but fit */
-  @media(max-width:880px){
-    .brand-title{display:none}
-    nav.primary{display:none}
-    .menu-btn{display:block}
-    .logo-box img{height:80px}
-    .cta{padding:6px 10px;font-size:13px}
-  }
+/* brand title single line */
+.brand-title{
+  color:white;font-family:"Playfair Display";font-size:26px;font-weight:700;margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
 
-  /* Hero / slideshow */
-  .hero{position:relative;min-height:90vh;overflow:hidden} /* tall to almost cover page vertically */
-  .slides{position:absolute;inset:0}
-  .slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease}
-  .slides img.active{opacity:1}
-  /* overlay */
-  .hero-overlay{
-    position:absolute;left:20px;bottom:40px;z-index:6;
-    background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.62));
-    color:var(--gold);padding:18px;border-radius:12px;max-width:720px;border:1px solid rgba(212,175,55,0.08);
-    backdrop-filter: blur(2px);
-    transform:translateY(12px);
-    animation: slideUp .6s .2s forwards;
-  }
-  @keyframes slideUp{to{transform:none;opacity:1}}
-  .hero-overlay h1{font-family:"Playfair Display";font-size:40px;margin:0;color:var(--gold);line-height:1}
-  .hero-overlay p{color:#fffbd6;margin-top:10px;font-weight:600}
+/* nav & CTAs (desktop) */
+nav.primary{margin-left:auto;display:flex;gap:14px}
+nav.primary a{color:white;font-weight:600;padding:8px 10px;border-radius:6px}
+nav.primary a:hover{background:white;color:var(--teal)}
+.menu-btn{display:none;background:none;border:0;color:white;font-size:28px;cursor:pointer}
+.header-ctas{display:flex;gap:12px;margin-left:12px;align-items:center;flex-shrink:0}
+.header-ctas a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;font-weight:700;color:white;text-decoration:none}
+.call-btn{background:rgba(255,255,255,0.18);color:#fff}
+.whatsapp-btn{background:var(--aqua);color:#013d48}
+.header-ctas img{width:18px;height:18px;display:block}
 
-  .hero-actions{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
-  .btn{padding:10px 14px;border-radius:10px;font-weight:800;cursor:pointer;border:0}
-  .btn.book{background:var(--gold);color:var(--teal)}
-  .btn.ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.14)}
-  .btn:hover{transform:translateY(-4px);transition:.18s}
+/* ---------- MOBILE: match Palm Banquet feel, show text too ---------- */
+@media (max-width:760px){
+  nav.primary{display:none}
+  .menu-btn{display:block}
+  .header-inner{align-items:center;padding:8px 12px;gap:12px}
+  .logo-box img{height:92px;flex-shrink:0}
+  .brand-title{font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-  /* Main container */
-  .container{max-width:var(--max-width);margin:28px auto;padding:0 16px}
+  /* keep CTA text visible but compact, prevent overflow */
+  .header-ctas{margin-left:auto;gap:8px}
+  .header-ctas a{padding:6px 8px;border-radius:10px;font-size:14px}
+  .header-ctas img{width:18px;height:18px}
+  .header-ctas a span{display:inline-block}
 
-  /* Section titles */
-  .section-title{font-size:24px;color:var(--teal);font-weight:700;margin-bottom:14px}
+  /* ---------- USER REQUEST: hide the header brand title on mobile ---------- */
+  .brand-title { display: none; }
+}
 
-  /* Gallery grid (4 images only) */
-  .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-  .gallery-grid img{width:100%;height:320px;object-fit:cover;border-radius:12px;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s}
-  .gallery-grid img:hover{transform:scale(1.03)}
+/* On very narrow phones, allow wrapping inside header-ctas but keep compact */
+@media (max-width:360px){
+  .header-inner{gap:8px}
+  .header-ctas{gap:6px}
+  .header-ctas a{padding:6px 6px;font-size:13px}
+  .brand-title{font-size:15px}
+}
 
-  /* Services */
-  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-  .service{background:var(--white);padding:12px;border-radius:12px;box-shadow:var(--shadow);text-align:center;transition:transform .18s}
-  .service img{width:100%;height:160px;object-fit:cover;border-radius:8px}
-  .service h3{margin-top:10px;color:var(--teal)}
-  .service p{color:var(--muted);font-weight:600}
+/* Mobile menu panel (Palm-style) */
+#mobileNav{
+  display:none;position:fixed;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.96),rgba(0,0,0,0.98));z-index:300;padding:22px;
+  color:#fff;overflow:auto;
+}
+#mobileNav .mobile-top{
+  display:flex;align-items:center;gap:12px;margin-bottom:18px;
+}
+#mobileNav .mobile-top img{height:70px;display:block}
+#mobileNav .mobile-title{font-family:"Playfair Display";font-size:20px;color:var(--aqua);font-weight:700}
+#mobileNav nav a{display:block;color:#fff;font-size:20px;text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
+#mobileClose{position:absolute;right:18px;top:18px;background:none;border:0;color:white;font-size:30px;cursor:pointer}
 
-  /* Pricing */
-  .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-  .pricing-card{background:linear-gradient(180deg,#eaf8fb,#ffffff);padding:12px;border-radius:12px;border-left:6px solid var(--teal);box-shadow:0 8px 26px rgba(0,0,0,0.08);transition:transform .18s}
-  .pricing-card:hover{transform:translateY(-6px)}
-  .pricing-card h3{color:var(--teal);margin-bottom:6px}
-  .pricing-card p{color:var(--muted);font-weight:700}
+/* compact CTAs inside mobile menu */
+#mobileNav .mobile-ctas{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+#mobileNav .mobile-ctas a{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);color:#fff;padding:8px 10px;border-radius:8px;font-weight:700;text-decoration:none;font-size:15px}
+#mobileNav .mobile-ctas img{width:16px;height:16px;display:block}
 
-  /* Time / Contact / Map */
-  .contact-grid{display:grid;grid-template-columns:1fr 420px;gap:18px;align-items:start}
-  .contact-card{background:var(--white);padding:14px;border-radius:12px;box-shadow:var(--shadow)}
-  .map-wrap{border-radius:12px;overflow:hidden;height:100%}
-  .map-wrap iframe{width:100%;height:100%;border:0;display:block}
+/* ---------- HERO / SLIDES ---------- */
+.hero{position:relative;min-height:78vh;overflow:hidden}
+.slides{position:absolute;inset:0}
+.slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s}
+.slides img.active{opacity:1}
 
-  /* Floating Book */
-  .floating{position:fixed;right:16px;bottom:16px;z-index:240}
-  .floating a{display:inline-flex;padding:12px 14px;border-radius:12px;background:linear-gradient(135deg,var(--aqua),var(--teal));color:white;font-weight:800;box-shadow:var(--shadow);text-decoration:none}
+/* overlay */
+.hero-overlay{position:absolute;left:18px;bottom:36px;background:linear-gradient(180deg,rgba(0,0,0,0.35),rgba(0,0,0,0.62));padding:18px;border-radius:10px;max-width:640px}
+.hero-overlay h1{font-family:"Playfair Display";color:white;font-size:30px;margin:0}
+.hero-overlay p{color:#eaf9fb;margin-top:8px}
 
-  /* Lightbox & modal */
-  .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.9);z-index:900}
-  .lightbox.active{display:flex}
-  .lightbox img{max-width:96%;max-height:96%;border-radius:10px}
-  .modal{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:950}
-  .modal.active{display:flex}
-  .modal-content{background:white;padding:16px;border-radius:12px;width:96%;max-width:520px;box-shadow:var(--shadow)}
-  .modal-content input,.modal-content select,.modal-content textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid #e6f3f5}
+/* controls & buttons */
+.btn{padding:10px 14px;border-radius:10px;font-weight:800;display:inline-flex;gap:8px;align-items:center;cursor:pointer;transition:transform .18s}
+.btn.book{background:var(--aqua);color:#013d48}
+.btn.ghost{background:transparent;color:white;border:2px solid rgba(255,255,255,0.12)}
+.btn:hover{transform:translateY(-4px)}
 
-  /* Footer */
-  footer{background:var(--teal);color:#fffbd6;padding:18px 0;text-align:center}
-  footer a{color:#fffbd6;font-weight:700;margin:0 10px;display:inline-flex;align-items:center;gap:8px}
-  footer img{width:18px;height:18px}
+/* ---------- REST OF SITE ---------- */
+.container{max-width:var(--max-width);margin:auto;padding:26px 16px}
+.section-title{font-size:26px;color:var(--teal);font-weight:700;margin-bottom:12px}
 
-  /* Responsive adjustments */
-  @media(max-width:980px){
-    .hero{min-height:72vh}
-    .hero-overlay{left:16px;right:16px;max-width:none}
-    .contact-grid{grid-template-columns:1fr}
-    .map-wrap{height:320px}
-    .logo-box img{height:84px}
-  }
-  @media(max-width:560px){
-    .logo-box img{height:92px}
-    .header-inner{padding:8px 12px}
-    .hero{min-height:75vh}
-    .gallery-grid img{height:200px}
-    .brand-title{display:none}
-    .menu-btn{display:block}
-    .header-ctas .cta{padding:6px 8px;font-size:13px}
-    .nav-wrap{gap:10px}
-  }
+/* gallery: only the 4 images set earlier */
+.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.gallery-grid img{width:100%;height:320px;object-fit:cover;border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,0.12);transition:transform .24s}
+.gallery-grid img:hover{transform:scale(1.03)}
 
-  /* reduced-motion */
-  @media (prefers-reduced-motion: reduce){
-    .slides img{transition:none!important}
-  }
+/* services */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.service-card{background:var(--white);padding:12px;border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,0.08);text-align:center;transition:transform .18s}
+.service-card:hover{transform:translateY(-6px)}
+.service-card img{width:100%;height:180px;object-fit:cover;border-radius:8px}
 
-  /* small tooltip */
-  [data-tooltip]{position:relative}
-  [data-tooltip]:hover::after{
-    content:attr(data-tooltip);position:absolute;left:50%;transform:translateX(-50%);bottom:calc(100% + 8px);
-    background:rgba(0,0,0,0.9);color:#fff;padding:6px 8px;border-radius:6px;font-size:13px;white-space:nowrap;
-  }
+/* time / pricing / contact */
+.time-box, .pricing-box, .contact-card{background:var(--white);padding:16px;border-radius:10px;box-shadow:var(--shadow);margin-bottom:14px}
+.pricing-card{background:var(--cream);padding:12px;border-radius:10px;margin-bottom:10px;border-left:6px solid var(--teal);transition:transform .16s}
+.pricing-card:hover{transform:translateY(-6px)}
+.pricing-card h3{color:var(--teal);margin-bottom:6px;font-weight:700}
+.pricing-card p{color:var(--muted);font-weight:700}
+
+/* map */
+.map-wrap{height:340px;border-radius:10px;overflow:hidden;margin-top:12px}
+.map-wrap iframe{width:100%;height:100%;border:0}
+
+/* floating book */
+.floating{position:fixed;right:14px;bottom:14px;z-index:250}
+.floating a{display:inline-flex;padding:12px 14px;border-radius:10px;background:linear-gradient(135deg,var(--aqua),var(--teal));color:white;font-weight:800;box-shadow:var(--shadow);transition:transform .16s}
+.floating a:hover{transform:translateY(-6px)}
+
+/* lightbox & modal */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:900}
+.lightbox.active{display:flex}
+.lightbox img{max-width:96%;max-height:96%;border-radius:10px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:950}
+.modal.active{display:flex}
+.modal-content{background:white;padding:16px;border-radius:10px;width:95%;max-width:520px}
+.modal-content input,.modal-content select,.modal-content textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid #dfeff3}
+
+/* footer */
+footer{background:var(--teal);color:white;padding:18px;text-align:center}
+footer a{color:white;font-weight:700;margin:0 8px;display:inline-flex;align-items:center;gap:8px}
+footer img{width:18px;height:18px}
+
+/* resp small tweaks */
+@media (max-width:420px){
+  .logo-box img{height:98px}
+  .brand-title{font-size:15px}
+  .gallery-grid img{height:200px}
+  .map-wrap{height:240px}
+  .hero-overlay h1{font-size:20px}
+}
 </style>
 </head>
 <body>
 
 <!-- HEADER -->
 <header class="site-header" role="banner">
-  <div class="header-inner">
-    <div class="logo-wrap">
+  <div class="header-inner" id="headerInner">
+    <div style="display:flex;align-items:center;gap:12px;min-width:0">
       <div class="logo-box">
-        <img id="siteLogo" src="The South Water Park Logo.png" alt="The South Water Park Logo">
+        <img src="The_South_Water_Park_Logo.png" id="siteLogo" alt="The South Water Park logo">
       </div>
-      <div class="brand-title" id="brandTitle">THE SOUTH WATER PARK</div>
+      <div class="brand-title" aria-label="The South Water Park">The South Water Park</div>
     </div>
 
-    <div class="nav-wrap" role="navigation" aria-label="Main">
-      <nav class="primary" aria-label="Primary Navigation">
-        <a href="#home">Home</a>
-        <a href="#highlights">Gallery</a>
-        <a href="#services">Services</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact">Contact</a>
-      </nav>
+    <nav class="primary" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-      <div class="header-ctas" role="group" aria-label="Contact">
-        <a class="cta call" href="tel:+919462015450" data-tooltip="Call to book">
-          <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="call">
-          <span>Call</span>
-        </a>
-        <a class="cta wa" href="https://wa.me/919462015450" target="_blank" rel="noopener" data-tooltip="Message on WhatsApp">
-          <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="whatsapp">
-          <span>WhatsApp</span>
-        </a>
-      </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">☰</button>
 
-      <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
+    <div class="header-ctas" role="group" aria-label="Contact actions">
+      <!-- Icon + text visible on all breakpoints; sizing handled in CSS -->
+      <a class="call-btn" href="tel:+919462015450" data-tooltip="Call us to book" aria-label="Call">
+        <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="call icon"><span>Call</span>
+      </a>
+      <a class="whatsapp-btn" href="https://wa.me/919462015450" data-tooltip="Message on WhatsApp" aria-label="WhatsApp" target="_blank" rel="noopener">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="whatsapp icon"><span>WhatsApp</span>
+      </a>
     </div>
   </div>
 </header>
 
-<!-- MOBILE NAV (full-screen) -->
-<nav id="mobileNav" aria-hidden="true" style="display:none">
-  <button id="mobileClose" aria-label="Close menu" style="position:absolute;right:18px;top:18px;background:transparent;border:0;color:#fff;font-size:36px">×</button>
-
-  <div style="margin-top:56px;color:#fff;display:flex;flex-direction:column;gap:20px;padding:18px 8px">
-    <div style="display:flex;gap:12px;align-items:center">
-      <img src="The South Water Park Logo.png" alt="logo" style="height:68px">
-      <div style="font-family:Playfair Display, serif;color:var(--aqua);font-weight:800;font-size:18px">THE SOUTH WATER PARK</div>
+<!-- MOBILE NAV (Palm-style) -->
+<nav id="mobileNav" aria-hidden="true" aria-label="Mobile menu" tabindex="-1">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:12px">
+      <img src="The_South_Water_Park_Logo.png" alt="logo" style="height:66px">
+      <div class="mobile-title">THE SOUTH WATER PARK</div>
     </div>
+    <button id="mobileClose" aria-label="Close menu">×</button>
+  </div>
 
-    <a href="#home">Home</a>
-    <a href="#highlights">Gallery</a>
-    <a href="#services">Services</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#contact">Contact</a>
+  <div style="margin-top:18px">
+    <nav aria-label="Mobile primary">
+      <a href="#home">Home</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-    <div style="margin-top:8px;display:flex;gap:12px;flex-wrap:wrap">
-      <a href="tel:+919462015450" style="display:inline-flex;align-items:center;gap:8px;color:#fff"><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" style="width:18px">Call</a>
-      <a href="https://wa.me/919462015450" style="display:inline-flex;align-items:center;gap:8px;color:#fff"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" style="width:18px">WhatsApp</a>
-      <a href="#pricing" style="background:linear-gradient(135deg,var(--aqua),var(--teal));padding:8px 10px;border-radius:8px;color:#012e33">Book Now</a>
+    <div class="mobile-ctas" style="margin-top:18px">
+      <a href="tel:+919462015450"><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="">Call</a>
+      <a href="https://wa.me/919462015450" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="">WhatsApp</a>
+      <a href="#pricing" style="background:linear-gradient(135deg,var(--aqua),var(--teal));color:#013d48">Book Now</a>
     </div>
   </div>
 </nav>
 
-<!-- HERO / SLIDES -->
+<!-- HERO: slideshow -->
 <main id="home" class="hero" role="main" tabindex="-1">
   <div class="slides" aria-hidden="false">
-    <!-- order 1 -> 4 -> 2 -> 3 as requested -->
-    <img src="front_gate.png" alt="Front Gate" class="active" loading="lazy">
-    <img src="full_park.jpg" alt="Full Park" loading="lazy">
-    <img src="kids_pool.jpg" alt="Kids Pool" loading="lazy">
-    <img src="spray_pool.jpg" alt="Spray Pool" loading="lazy">
+    <img src="front_gate.png" alt="Front gate" class="active" loading="lazy">
+    <img src="kids_pool.jpg" alt="Kids pool" loading="lazy">
+    <img src="spray_pool.jpg" alt="Spray pool" loading="lazy">
+    <img src="full_park.jpg" alt="Full park view" loading="lazy">
   </div>
 
-  <div class="hero-overlay" role="region" aria-live="polite">
-    <h1>Moments of Joy, Built for Families</h1>
-    <p>Slides • Spray Pool • Kids Zones • Food Courts — Fun for every age. Book your visit now.</p>
-    <div class="hero-actions">
-      <button class="btn book" id="openBookBtn">Book Now</button>
-      <a class="btn ghost" href="#contact">Get Directions</a>
+  <div class="hero-overlay fade-up" role="region" aria-live="polite">
+    <h1>Unlimited Fun Awaits You!</h1>
+    <p>Slides, spray pool, kids attractions, food zones & more — Jaipur’s favourite family destination.</p>
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn book" id="openBookBtn" data-tooltip="Book via WhatsApp">Book Now</button>
+      <a class="btn ghost" href="#contact" data-tooltip="Get directions">Directions</a>
     </div>
   </div>
 </main>
 
-<!-- MAIN CONTENT -->
-<section class="container" id="highlights" aria-labelledby="highTitle">
-  <h2 id="highTitle" class="section-title">Venue Highlights</h2>
+<!-- Time -->
+<section class="container fade-up" aria-labelledby="timeTitle">
+  <div class="time-box" id="timeTitle">
+    <h2>Opening Hours</h2>
+    <p><strong>09:00 AM – 08:00 PM</strong> (Daily) • Ticket valid for 4–5 hours</p>
+  </div>
+</section>
 
-  <div class="gallery-grid" role="list">
+<!-- Highlights (4 images) -->
+<section class="container" id="highlights" aria-labelledby="highTitle">
+  <h2 class="section-title fade-up" id="highTitle">Venue Highlights</h2>
+
+  <div class="gallery-grid fade-up" role="list">
     <img src="front_gate.png" alt="Front Gate" loading="lazy" data-tooltip="Main Entrance">
-    <img src="full_park.jpg" alt="Full Park" loading="lazy" data-tooltip="Park Overview">
     <img src="kids_pool.jpg" alt="Kids Pool" loading="lazy" data-tooltip="Kids Play Pool">
     <img src="spray_pool.jpg" alt="Spray Pool" loading="lazy" data-tooltip="Spray Pool">
+    <img src="full_park.jpg" alt="Full Park" loading="lazy" data-tooltip="Entire Park">
   </div>
 </section>
 
+<!-- Services -->
 <section class="container" id="services" aria-labelledby="servicesTitle">
-  <h2 id="servicesTitle" class="section-title">Services</h2>
+  <h2 class="section-title fade-up" id="servicesTitle">Services</h2>
 
-  <div class="services-grid" role="list">
-    <div class="service">
-      <img src="full_park.jpg" alt="Slides">
+  <div class="services-grid fade-up" role="list">
+    <div class="service-card" data-tooltip="Slides for thrill-seekers">
+      <img src="full_park.jpg" alt="Thrilling Slides">
       <h3>Thrilling Slides</h3>
-      <p>Rides designed for safety and fun — for teenagers and adults.</p>
+      <p>High-adrenaline rides for teens & adults.</p>
     </div>
 
-    <div class="service">
+    <div class="service-card" data-tooltip="Safe kids area">
       <img src="kids_pool.jpg" alt="Kids Pool">
       <h3>Kids Play Pool</h3>
-      <p>Shallow pools and soft-play features for young children.</p>
+      <p>Shallow, fun pools for children.</p>
     </div>
 
-    <div class="service">
+    <div class="service-card" data-tooltip="Interactive spray fountains">
       <img src="spray_pool.jpg" alt="Spray Pool">
       <h3>Spray Pool</h3>
-      <p>Interactive fountains and sprays — family-friendly splash zones.</p>
+      <p>Fountains and spray features for family fun.</p>
     </div>
 
-    <div class="service">
+    <div class="service-card" data-tooltip="Food & refreshments">
       <img src="full_park.jpg" alt="Food Courts">
       <h3>Food Courts</h3>
-      <p>Multiple counters offering snacks, fast food and beverages.</p>
+      <p>Snacks, meals & beverages on-site.</p>
     </div>
   </div>
 </section>
 
+<!-- Pricing -->
 <section class="container" id="pricing" aria-labelledby="pricingTitle">
-  <h2 id="pricingTitle" class="section-title">Pricing</h2>
+  <h2 class="section-title fade-up" id="pricingTitle">Pricing</h2>
 
-  <div class="pricing-grid" role="list">
+  <div class="pricing-box fade-up" aria-live="polite">
     <div class="pricing-card" data-tooltip="Entry basic fare — 1 hour validity">
       <h3>Base Ticket</h3>
       <p>₹150 — Per Person (1 Hour)</p>
     </div>
 
-    <div class="pricing-card" data-tooltip="Kids below 4 ft are free">
+    <div class="pricing-card" data-tooltip="Kids under 4 feet go free">
       <h3>Kids (Below 4 Ft)</h3>
-      <p><strong>FREE</strong></p>
+      <p>FREE</p>
     </div>
 
-    <div class="pricing-card" data-tooltip="Kids ticket options">
+    <div class="pricing-card" data-tooltip="Choose with/without food options">
       <h3>Kids Ticket (Below 4 Ft)</h3>
       <p>₹200 — Without Food<br>₹350 — With Fast Food<br>₹500 — With Main Food</p>
     </div>
 
-    <div class="pricing-card" data-tooltip="Adult ticket options">
+    <div class="pricing-card" data-tooltip="Choose adult ticket options">
       <h3>Adult Ticket</h3>
       <p>₹300 — Without Food<br>₹450 — With Fast Food<br>₹600 — With Main Food</p>
     </div>
 
-    <div class="pricing-card" data-tooltip="Extra on Sundays">
+    <div class="pricing-card" data-tooltip="Extra Sunday surcharge">
       <h3>Sunday Charges</h3>
       <p>₹50 Extra on all tickets (Except ₹150 base)</p>
     </div>
   </div>
 </section>
 
+<!-- Contact -->
 <section class="container" id="contact" aria-labelledby="contactTitle">
-  <h2 id="contactTitle" class="section-title">Get in Touch</h2>
+  <h2 class="section-title fade-up" id="contactTitle">Get in Touch</h2>
 
-  <div class="contact-grid" role="region">
-    <div class="contact-card">
-      <p><strong>Address</strong><br>
-        Plot No. 68/2, Near Mahatma Gandhi Hospital, Goner Road, Opp. Chokhi Dhani, Sitapura, Jaipur — 302022
-      </p>
+  <div class="contact-card fade-up">
+    <p><strong>Address:</strong><br>
+      QR8V+855 Patel Nagar, Goner Rd, Sitapura Industrial Area, Jaipur
+    </p>
 
-      <p style="margin-top:12px"><strong>Book Now</strong><br>
-        <a href="tel:+919462015450" style="color:var(--teal);font-weight:700">+91 94620 15450</a><br>
-        <a href="tel:+919414071245" style="color:var(--teal);font-weight:700">+91 94140 71245</a>
-      </p>
+    <p style="margin-top:10px"><strong>Book Now:</strong><br>
+      <a href="tel:+919462015450" style="color:var(--teal);font-weight:700" data-tooltip="Call to book">+91 94620 15450</a><br>
+      <a href="tel:+919414071245" style="color:var(--teal);font-weight:700" data-tooltip="Alternate number">+91 94140 71245</a>
+    </p>
 
-      <div style="margin-top:14px">
-        <button class="btn book" id="openBookBtn2">Quick Enquiry</button>
-      </div>
-    </div>
-
-    <div class="map-wrap">
-      <!-- Use your supplied iframe -->
+    <div class="map-wrap" aria-hidden="false">
       <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3562.3065359303155!2d75.83902447596803!3d26.766497066357736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396dc9f5bf7de593%3A0x3631a1e1ac757557!2sThe%20Palm%20Banquet%20by%20The%20South%20WaterPark!5e0!3m2!1sen!2sin!4v1764168177290!5m2!1sen!2sin" 
-        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        src="https://www.google.com/maps?q=QR8V%2B855%20Patel%20Nagar%2C%20Goner%20Rd%2C%20Jaipur&output=embed"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </section>
 
-<!-- Floating Book Now -->
-<div class="floating">
-  <a id="floatBook" href="javascript:void(0)" aria-label="Book Now">Book Now</a>
-</div>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
-  <img id="lbImg" src="" alt="expanded">
-</div>
-
-<!-- Booking Modal -->
-<div class="modal" id="bookingModal" aria-hidden="true" role="dialog">
-  <div class="modal-content" role="document">
-    <h3>Quick Enquiry</h3>
-    <input id="b_name" type="text" placeholder="Your name">
-    <select id="b_event">
-      <option value="" disabled selected>Visit Type</option>
-      <option>Family Visit</option><option>Group Visit</option><option>School Trip</option><option>Birthday</option>
-    </select>
-    <input id="b_date" type="date">
-    <input id="b_guests" type="number" placeholder="Number of people">
-    <textarea id="b_msg" rows="3" placeholder="Any notes"></textarea>
-
-    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:6px">
-      <button id="modalCancel" style="padding:8px 12px;border-radius:8px;background:#eee;border:none">Cancel</button>
-      <button id="modalSend" style="padding:8px 12px;border-radius:8px;background:var(--aqua);color:#012e33;border:none">Send via WhatsApp</button>
-    </div>
-  </div>
-</div>
-
 <!-- Footer -->
 <footer role="contentinfo">
-  <p style="margin-bottom:8px">&copy; <span id="year"></span> The South Water Park. All rights reserved.</p>
-  <div style="display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap">
+  <p>© <span id="year"></span> The South Water Park</p>
+  <div style="margin-top:12px">
     <a href="https://www.facebook.com/thesouthwaterparkpalmbanquet/" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="">Facebook</a>
     <a href="https://www.instagram.com/thepalmbanquethall/" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="">Instagram</a>
     <a href="https://wa.me/919462015450" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="">WhatsApp</a>
@@ -406,77 +392,123 @@
   </div>
 </footer>
 
-<!-- Cookie / Consent banner -->
-<div id="consent" style="display:none;position:fixed;left:12px;right:12px;bottom:18px;background:#fff;padding:12px;border-radius:10px;box-shadow:var(--shadow);z-index:950;max-width:calc(var(--max-width) - 40px);margin:0 auto;">
-  <div style="display:flex;gap:12px;align-items:center">
-    <div style="flex:1">
-      <strong>Privacy & analytics</strong><br>
-      We use analytics to improve the site. Accept to enable Google Analytics. Contact via WhatsApp — we don't store emails.
-    </div>
-    <div style="display:flex;gap:8px">
-      <button id="consentReject" style="padding:8px 12px;border-radius:8px;background:#eee;border:none">Reject</button>
-      <button id="consentAccept" style="padding:8px 12px;border-radius:8px;background:var(--gold);color:#012e33;border:none">Accept</button>
+<!-- Floating Book -->
+<div class="floating">
+  <a id="floatBook" data-tooltip="Quick book on WhatsApp">Book Now</a>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
+  <img id="lightboxImg" alt="">
+</div>
+
+<!-- Booking Modal -->
+<div class="modal" id="bookingModal" aria-hidden="true">
+  <div class="modal-content" role="document">
+    <h3>Quick Enquiry</h3>
+    <input id="b_name" type="text" placeholder="Your name">
+    <select id="b_event"><option disabled selected>Visit Type</option><option>Family Visit</option><option>Group Visit</option><option>School Trip</option><option>Birthday</option></select>
+    <input id="b_date" type="date">
+    <input id="b_guests" type="number" placeholder="Number of people">
+    <textarea id="b_msg" rows="3" placeholder="Any notes"></textarea>
+
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:6px">
+      <button id="modalCancel" style="padding:8px 12px;border-radius:8px;background:#eee;border:none">Cancel</button>
+      <button id="modalSend" style="padding:8px 12px;border-radius:8px;background:var(--aqua);color:#013d48;border:none">Send via WhatsApp</button>
     </div>
   </div>
 </div>
 
+<!-- Consent banner (placeholder, hidden) -->
+<div id="consentBanner" style="display:none"></div>
+
 <!-- SCRIPTS -->
 <script>
-  // Year
+  // year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Mobile nav open/close + smooth-close-on-link
-  (function mobileNav(){
+  /* ---------- Mobile menu behavior (robust) ---------- */
+  (function mobileMenu(){
     const menuBtn = document.getElementById('menuBtn');
     const mobileNav = document.getElementById('mobileNav');
     const mobileClose = document.getElementById('mobileClose');
+    const mobileLinks = mobileNav ? mobileNav.querySelectorAll('nav a') : [];
+    const FOCUSABLE = 'a, button, input, select, textarea';
+    let lastActiveEl = null;
 
-    menuBtn?.addEventListener('click', ()=> {
+    if(!menuBtn || !mobileNav || !mobileClose) return;
+
+    function openMenu(){
+      lastActiveEl = document.activeElement;
       mobileNav.style.display = 'block';
       mobileNav.setAttribute('aria-hidden','false');
+      menuBtn.setAttribute('aria-expanded','true');
       document.body.style.overflow = 'hidden';
-    });
+      // focus first link for keyboard users
+      const first = mobileNav.querySelector('nav a');
+      if(first) first.focus();
+    }
 
     function closeMenu(){
       mobileNav.style.display = 'none';
       mobileNav.setAttribute('aria-hidden','true');
+      menuBtn.setAttribute('aria-expanded','false');
       document.body.style.overflow = '';
+      // return focus to last focused element (menu button)
+      try{ (lastActiveEl || menuBtn).focus(); } catch(e){}
     }
-    mobileClose?.addEventListener('click', closeMenu);
 
-    // close on link click & smooth scroll
-    mobileNav.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', (e)=>{
-        e.preventDefault();
-        const href = a.getAttribute('href');
+    menuBtn.addEventListener('click', (e)=>{
+      const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+      if(isOpen) closeMenu(); else openMenu();
+    });
+
+    mobileClose.addEventListener('click', (e)=>{
+      closeMenu();
+    });
+
+    // Close when any mobile nav link is clicked
+    mobileLinks.forEach(link=>{
+      link.addEventListener('click', (e)=>{
+        // allow normal anchor navigation (smooth scroll handled elsewhere)
         closeMenu();
-        setTimeout(()=> {
-          const el = document.querySelector(href);
-          if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-        }, 240);
       });
     });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && mobileNav.style.display === 'block'){
+        closeMenu();
+      }
+    });
+
+    // Close menu if user resizes to desktop width
+    let checkResize = () => {
+      if(window.innerWidth > 760 && mobileNav.style.display === 'block'){
+        closeMenu();
+      }
+    };
+    window.addEventListener('resize', checkResize);
   })();
 
-  // Slideshow (order already set with HTML)
+  // slideshow
   (function slideshow(){
     const slides = document.querySelectorAll('.slides img');
-    if(!slides.length) return;
-    let i = 0;
-    slides.forEach((s, idx)=> s.classList.toggle('active', idx === 0));
+    let idx = 0;
+    if (!slides.length) return;
+    slides.forEach((s,i)=> s.classList.toggle('active', i===0));
     setInterval(()=> {
-      slides[i].classList.remove('active');
-      i = (i + 1) % slides.length;
-      slides[i].classList.add('active');
-    }, 4200);
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    }, 3800);
   })();
 
-  // Gallery lightbox
+  // gallery lightbox
   (function lightbox(){
     const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
+    const lbImg = document.getElementById('lightboxImg');
     document.querySelectorAll('.gallery-grid img').forEach(img=>{
-      img.style.cursor = 'pointer';
       img.addEventListener('click', ()=> {
         lbImg.src = img.src;
         lb.classList.add('active');
@@ -490,88 +522,41 @@
       lbImg.src = '';
       document.body.style.overflow = '';
     });
-    document.addEventListener('keydown', e=> { if(e.key === 'Escape' && lb.classList.contains('active')){ lb.classList.remove('active'); lbImg.src=''; document.body.style.overflow=''; }});
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && lb.classList.contains('active')) { lb.click(); } });
   })();
 
-  // Booking modal -> WhatsApp
+  // booking modal
   (function booking(){
-    const modal = document.getElementById('bookingModal');
-    const openBtns = [document.getElementById('openBookBtn'), document.getElementById('openBookBtn2'), document.getElementById('floatBook')];
-    const cancel = document.getElementById('modalCancel');
-    const send = document.getElementById('modalSend');
-    const open = ()=> { modal.classList.add('active'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; };
-    const close = ()=> { modal.classList.remove('active'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; };
+    const bookingModal = document.getElementById('bookingModal');
+    const openBookBtn = document.getElementById('openBookBtn');
+    const floatBook = document.getElementById('floatBook');
+    const modalCancel = document.getElementById('modalCancel');
+    const modalSend = document.getElementById('modalSend');
 
-    openBtns.forEach(b=> b && b.addEventListener('click', open));
-    cancel && cancel.addEventListener('click', close);
+    function open(){ bookingModal.classList.add('active'); bookingModal.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; bookingModal.querySelector('input,select,textarea')?.focus(); }
+    function close(){ bookingModal.classList.remove('active'); bookingModal.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; }
 
-    send && send.addEventListener('click', ()=>{
+    openBookBtn && openBookBtn.addEventListener('click', open);
+    floatBook && floatBook.addEventListener('click', open);
+    modalCancel && modalCancel.addEventListener('click', close);
+
+    modalSend && modalSend.addEventListener('click', ()=>{
       const name = encodeURIComponent(document.getElementById('b_name').value || '—');
       const type = encodeURIComponent(document.getElementById('b_event').value || '—');
       const date = encodeURIComponent(document.getElementById('b_date').value || '—');
       const guests = encodeURIComponent(document.getElementById('b_guests').value || '—');
       const msg = encodeURIComponent(document.getElementById('b_msg').value || '—');
-      const text = `Booking Enquiry%0AName:${name}%0AType:${type}%0ADate:${date}%0AGuests:${guests}%0ANotes:${msg}`;
-      const phone = '919462015450';
-      window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+      const text = `Booking Enquiry%0AName:${name}%0AType:${type}%0ADate:${date}%0APeople:${guests}%0ANotes:${msg}`;
+      window.open(`https://wa.me/919462015450?text=${text}`, '_blank');
     });
 
-    document.addEventListener('keydown', e=> { if(e.key === 'Escape'){ close(); }});
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && bookingModal.classList.contains('active')) close(); });
   })();
 
-  // Floating Book opens modal (makes sure element exists)
-  document.getElementById('floatBook')?.addEventListener('click', ()=> {
-    const modal = document.getElementById('bookingModal');
-    modal && modal.classList.add('active') && modal.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-  });
-
-  // Smooth anchor scroll for desktop links
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', e=>{
-      const href = a.getAttribute('href');
-      if(href && href.length > 1){
-        e.preventDefault();
-        const el = document.querySelector(href);
-        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-      }
-    });
-  });
-
-  // Consent banner
-  (function consent(){
-    const banner = document.getElementById('consent');
-    const key = 'southwater_consent';
-    const saved = localStorage.getItem(key);
-    const GA = 'G-XXXXXXXXXX'; // replace to enable GA
-
-    function loadGA(){
-      if(!GA || GA === 'G-XXXXXXXXXX') return;
-      if(window.gaLoaded) return;
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', GA, { 'anonymize_ip': true });
-      const s = document.createElement('script'); s.src = `https://www.googletagmanager.com/gtag/js?id=${GA}`; s.async=true; document.head.appendChild(s);
-      window.gaLoaded = true;
-    }
-
-    if(saved === 'yes'){ loadGA(); }
-    else if(saved === 'no'){ /* nothing */ }
-    else { banner.style.display = 'block'; }
-
-    document.getElementById('consentAccept')?.addEventListener('click', ()=>{ localStorage.setItem(key,'yes'); banner.style.display='none'; loadGA(); });
-    document.getElementById('consentReject')?.addEventListener('click', ()=>{ localStorage.setItem(key,'no'); banner.style.display='none'; });
-  })();
-
-  // Logo fallback & report missing
-  setTimeout(()=> {
-    const logo = document.getElementById('siteLogo');
-    if(logo && (!logo.complete || logo.naturalWidth === 0)){
-      console.warn('Logo not found: "The South Water Park Logo.png" — please upload to site root.');
-    }
-  }, 900);
+  // year & safety
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const siteLogo = document.getElementById('siteLogo');
+  setTimeout(()=> { if(!siteLogo.complete || siteLogo.naturalWidth === 0) console.warn('Logo missing: The_South_Water_Park_Logo.png'); }, 900);
 </script>
 </body>
 </html>
