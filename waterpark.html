@@ -152,7 +152,8 @@
     .mobile-panel{position:fixed;right:0;top:0;height:100%;width:320px;max-width:84%;background:linear-gradient(180deg,#013f45,#00585f);color:#fff;box-shadow:-12px 0 40px rgba(0,0,0,0.4);transform:translateX(110%);transition:transform .36s cubic-bezier(.2,.9,.3,1);z-index:260;padding:22px;display:flex;flex-direction:column;gap:12px}
     .mobile-panel.active{transform:translateX(0)}
     .mobile-top{display:flex;align-items:center;gap:12px}
-    .mobile-top img{height:66px}
+    /* <-- MOBILE MENU LOGO SIZE REVERTED: smaller height so it doesn't dominate --> */
+    .mobile-top img{height:50px}
     .mobile-title{font-family:"Playfair Display";font-size:18px;color:var(--aqua);font-weight:800}
     .mobile-nav{margin-top:12px;display:flex;flex-direction:column;gap:10px}
     .mobile-nav a{padding:10px 8px;border-radius:8px;color:#fff;text-decoration:none;font-weight:700}
@@ -206,6 +207,7 @@
   <aside id="mobilePanel" class="mobile-panel" aria-hidden="true">
     <button id="mobileClose" class="mobile-close" aria-label="Close menu">✕</button>
     <div class="mobile-top">
+      <!-- Mobile menu logo now small (50px) -->
       <img src="The_South_Water_Park_Logo.png" alt="logo">
       <div class="mobile-title">THE SOUTH WATER PARK</div>
     </div>
@@ -228,7 +230,6 @@
   <!-- HERO -->
   <main id="home" class="hero" role="main" tabindex="-1" aria-label="Home">
     <div class="slides" aria-hidden="false">
-      <!-- Slide order: front_gate, kids_pool, spray_pool, full_park (as requested) -->
       <img src="front_gate.png" alt="Front Gate" class="active" loading="lazy">
       <img src="kids_pool.jpg" alt="Kids Pool" loading="lazy">
       <img src="spray_pool.jpg" alt="Spray Pool" loading="lazy">
@@ -307,7 +308,7 @@
     </div>
   </section>
 
-  <!-- Contact (Get in touch under highlights as requested) -->
+  <!-- Contact (Get in touch under highlights) -->
   <section id="contact" class="container" aria-labelledby="contactTitle">
     <h2 id="contactTitle" class="section-title">Get in Touch</h2>
 
@@ -329,7 +330,6 @@
       </div>
 
       <div class="map-wrap" aria-hidden="false">
-        <!-- Provided iframe (keeps width/height responsive) -->
         <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3562.3065359303155!2d75.83902447596803!3d26.766497066357736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396dc9f5bf7de593%3A0x3631a1e1ac757557!2sThe%20Palm%20Banquet%20by%20The%20South%20WaterPark!5e0!3m2!1sen!2sin!4v1764168177290!5m2!1sen!2sin" 
           width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -337,7 +337,7 @@
     </div>
   </section>
 
-  <!-- Footer (same colors & content as requested) -->
+  <!-- Footer -->
   <footer class="site-footer" role="contentinfo">
     <p>&copy; <span id="year"></span> The South Water Park. All rights reserved.</p>
     <div style="margin-top:10px">
@@ -374,38 +374,24 @@
     </div>
   </div>
 
-  <!-- Consent placeholder -->
-  <div id="consentBanner" class="consent" style="display:none">
-    <div><p><strong>Privacy & analytics</strong><br>We use analytics to improve this site. Accept to enable Google Analytics. You can still contact via WhatsApp — no email stored.</p></div>
-    <div style="margin-left:auto;display:flex;gap:8px">
-      <button id="consentReject" style="background:#eee;padding:8px 12px;border-radius:8px">Reject</button>
-      <button id="consentAccept" style="background:var(--gold);color:#013d48;padding:8px 12px;border-radius:8px">Accept</button>
-    </div>
-  </div>
-
   <script>
-    // set footer year
+    // footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    /* ---------------- LOGO: warn if missing (console) ---------------- */
-    const siteLogo = document.getElementById('siteLogo');
-    setTimeout(()=>{ if(!siteLogo.complete || siteLogo.naturalWidth === 0) console.warn('Logo missing: The_South_Water_Park_Logo.png'); },900);
-
-    /* ---------------- SLIDESHOW ---------------- */
+    // slideshow
     (function slideshow(){
       const slides = document.querySelectorAll('.slides img');
       if(!slides.length) return;
       let i = 0;
       slides.forEach((s, idx) => s.classList.toggle('active', idx===0));
-      const interval = 4200;
       setInterval(()=> {
         slides[i].classList.remove('active');
         i = (i+1) % slides.length;
         slides[i].classList.add('active');
-      }, interval);
+      }, 4200);
     })();
 
-    /* ---------------- MOBILE MENU (slide from right) ---------------- */
+    // mobile menu open/close + animations + smooth scroll
     (function mobileMenu(){
       const menuBtn = document.getElementById('menuBtn');
       const mobilePanel = document.getElementById('mobilePanel');
@@ -431,7 +417,7 @@
       mobileClose?.addEventListener('click', closeMenu);
       menuOverlay?.addEventListener('click', closeMenu);
 
-      // Smooth scroll & close when clicking mobile links
+      // Smooth scroll & close when clicking links inside mobile panel
       document.querySelectorAll('#mobilePanel .mobile-nav a').forEach(a=>{
         a.addEventListener('click', function(e){
           e.preventDefault();
@@ -440,12 +426,12 @@
           setTimeout(()=> {
             const el = document.querySelector(href);
             el && el.scrollIntoView({behavior:'smooth', block:'start'});
-          }, 260); // wait for animation to finish
+          }, 260);
         });
       });
     })();
 
-    /* ---------------- GALLERY LIGHTBOX ---------------- */
+    // lightbox
     (function lightbox(){
       const lb = document.getElementById('lightbox');
       const lbImg = document.getElementById('lbImg');
@@ -468,7 +454,7 @@
       function closeLb(){ lb.classList.remove('active'); lb.setAttribute('aria-hidden','true'); lbImg.src=''; document.body.style.overflow = ''; }
     })();
 
-    /* ---------------- BOOKING MODAL -> WhatsApp ---------------- */
+    // booking modal -> whatsapp
     (function booking(){
       const modal = document.getElementById('bookingModal');
       const openBtn = document.getElementById('openBookBtn');
@@ -496,8 +482,8 @@
       document.addEventListener('keydown', e => { if(e.key === 'Escape') close(); });
     })();
 
-    /* ---------------- smooth anchor scrolling for desktop nav ---------------- */
-    document.querySelectorAll('nav.primary a, .site-footer a[href^="#"]').forEach(a=>{
+    // smooth anchor scroll for desktop nav
+    document.querySelectorAll('nav.primary a, footer a[href^="#"]').forEach(a=>{
       a.addEventListener('click', function(e){
         const href = this.getAttribute('href');
         if(href && href.startsWith('#')){
@@ -508,38 +494,12 @@
       });
     });
 
-    /* ---------------- consent basic (placeholder) ---------------- */
-    (function consent(){
-      const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // replace if you have GA
-      const key = 'swp_consent';
-      const saved = localStorage.getItem(key);
-      const banner = document.getElementById('consentBanner');
-      if(saved === 'yes'){ loadGA(); }
-      else if(saved === 'no'){ /* nothing */ }
-      else { /* show banner if needed */ }
-
-      document.getElementById('consentAccept')?.addEventListener('click', ()=>{ localStorage.setItem(key,'yes'); loadGA(); banner.style.display='none'; });
-      document.getElementById('consentReject')?.addEventListener('click', ()=>{ localStorage.setItem(key,'no'); banner.style.display='none'; });
-
-      function loadGA(){
-        if(!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') return;
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){ dataLayer.push(arguments); }
-        window.gtag = gtag;
-        gtag('js', new Date());
-        gtag('config', GA_MEASUREMENT_ID, { 'anonymize_ip': true });
-        const s = document.createElement('script'); s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`; s.async=true; document.head.appendChild(s);
-      }
-    })();
-
-    /* ---------------- keyboard: close menus on Esc ---------------- */
+    // accessibility: close mobile on ESC (extra safety)
     document.addEventListener('keydown', e=>{
       if(e.key === 'Escape'){
-        // close mobile if open
         const mp = document.getElementById('mobilePanel');
         const overlay = document.getElementById('menuOverlay');
         if(mp && mp.classList.contains('active')){ mp.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow=''; }
-        // close modal/lightbox are handled in respective modules
       }
     });
   </script>
