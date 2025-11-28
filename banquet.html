@@ -1,265 +1,553 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Palm Banquet</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-        
-            body {
-                font-family: 'Roboto', sans-serif;
-                background: linear-gradient(to top, #fdfaf3, #fffef9);
-                color: #3a3a3a;
-                animation: fadeIn 1.2s ease-in-out;
-            }
-        
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(30px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-        
-            header {
-                text-align: center;
-                padding: 30px 20px 20px;
-                background: url('banquet-banner.jpg') center/cover no-repeat;
-                color: white;
-                position: relative;
-            }
-        
-            header::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                width: 100%;
-                background: rgba(34, 90, 70, 0.6); /* palm green overlay */
-                z-index: 1;
-            }
-        
-            header img {
-                width: 180px;
-                z-index: 2;
-                position: relative;
-                filter: brightness(1.3);
-            }
-        
-            header h1 {
-                font-size: 2.5rem;
-                margin-top: 10px;
-                font-weight: 700;
-                z-index: 2;
-                position: relative;
-            }
-        
-            header p {
-                font-size: 1.2rem;
-                z-index: 2;
-                position: relative;
-                margin-top: 10px;
-            }
-        
-            .content {
-                max-width: 1100px;
-                margin: 50px auto;
-                padding: 40px;
-                background: #ffffff;
-                border-radius: 20px;
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-            }
-        
-            .section {
-                margin-bottom: 45px;
-            }
-        
-            .section h2 {
-                font-size: 2.2rem;
-                color: #226050; /* deep palm green */
-                margin-bottom: 20px;
-                border-left: 6px solid #d4af37; /* golden accent */
-                padding-left: 15px;
-            }
-        
-            .section ul {
-                list-style: none;
-                padding-left: 0;
-            }
-        
-            .section ul li {
-                font-size: 1.1rem;
-                margin: 10px 0;
-                position: relative;
-                padding-left: 25px;
-            }
-        
-            .section ul li::before {
-                content: "🌿";
-                position: absolute;
-                left: 0;
-            }
-        
-            .section p {
-                font-size: 1.1rem;
-                line-height: 1.8;
-            }
-        
-            .map-container {
-                width: 100%;
-                height: 400px;
-                margin-top: 20px;
-                border-radius: 12px;
-                overflow: hidden;
-            }
-        
-            iframe {
-                width: 100%;
-                height: 100%;
-                border: 0;
-            }
-        
-            footer {
-                background: #226050;
-                color: #f9fbe7;
-                padding: 25px 0;
-                text-align: center;
-            }
-        
-            .social-media {
-                margin-top: 10px;
-            }
-        
-            .social-media a {
-                margin: 0 10px;
-                text-decoration: none;
-                color: #fffbd6;
-                font-size: 1.1rem;
-                transition: color 0.3s ease;
-            }
-        
-            .social-media a:hover {
-                color: #d4af37;
-            }
-        .whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 999;
-    background-color: #25D366;
-    border-radius: 50%;
-    padding: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Palm Banquet — Premium Events, Jaipur</title>
+  <meta name="description" content="The Palm Banquet — elegant venue, bespoke catering and full event management in Jaipur." />
+  <meta name="theme-color" content="#004D40" />
 
-.whatsapp-float:hover {
-    transform: scale(1.1);
-}
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-.whatsapp-float img {
-    width: 30px;
-    height: 30px;
+  <style>
+    :root{
+      --green:#004D40;
+      --gold:#D4AF37;
+      --cream:#F5F5DC;
+      --max-width:1200px;
+      --radius:12px;
+      --shadow: 0 12px 36px rgba(0,0,0,0.12);
+      --tap:48px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      background:var(--cream);color:#111;line-height:1.5;-webkit-font-smoothing:antialiased;
+    }
+    a { color:inherit; }
+
+    /* Skip link */
+    .skip-link{position:absolute;left:-9999px}
+    .skip-link:focus{position:fixed;left:12px;top:12px;background:#fff;padding:8px 12px;border-radius:6px;color:var(--green);z-index:9999;box-shadow:0 8px 30px rgba(0,0,0,0.18)}
+
+    /* Header */
+    .site-header{
+      position:sticky;top:0;z-index:160;background:var(--green);border-bottom:3px solid var(--gold);box-shadow:0 6px 18px rgba(0,0,0,0.12)
+    }
+    .header-inner{
+      max-width:var(--max-width);margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:12px;
+    }
+
+    /* Logo block - we reserve a fixed area so logo never collapses */
+    .logo-wrap{display:flex;align-items:center;gap:12px;min-width:0}
+    .logo-box{
+      width:150px;height:72px;flex:0 0 150px;display:flex;align-items:center;justify-content:flex-start;
+      padding-left:6px;
+    }
+    .logo-box img, .logo-box svg{max-height:72px; height:auto; display:block}
+    .brand-title{
+      font-family:"Playfair Display",serif;color:var(--gold);font-weight:800;font-size:26px;letter-spacing:1px;text-transform:uppercase;
+      text-shadow:0 2px 8px rgba(0,0,0,0.12);
+    }
+
+    /* hide brand-title when image is present; JS toggles .has-image on .header-inner */
+    /*.header-inner.has-image .brand-title{display:none}*/
+    /* Show heading when logo loads (desktop/tablet) */
+.header-inner.has-image .brand-title {
+  display: block;
+  margin-left: 12px;
+  line-height: 1;
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+}
+/* Always show heading on desktop */
+.header-inner.has-image .brand-title {
     display: block;
 }
 
-            .call-now-button {
-                text-align: center;
-                margin: 40px 0 20px;
-            }
-        
-            .call-now-button a {
-                background-color: #226050;
-                color: white;
-                padding: 14px 30px;
-                border-radius: 8px;
-                font-size: 1.2rem;
-                font-weight: bold;
-                text-decoration: none;
-                transition: background-color 0.3s ease, transform 0.2s ease;
-                display: inline-block;
-            }
-        
-            .call-now-button a:hover {
-                background-color: #2e594e;
-                transform: scale(1.05);
-                cursor: pointer;
-                color: #ffffff;
-            }
-        </style>
+/* Hide heading on mobile */
+@media (max-width: 480px) {
+    .brand-title {
+        display: none;
+    }
+}
+
+
+/* Laptop / Medium Screens */
+@media (max-width: 980px) {
+  .header-inner.has-image .brand-title {
+    font-size: 22px;
+  }
+}
+
+/* Hide heading ONLY on small mobile screens */
+@media (max-width: 480px) {
+  .header-inner.has-image .brand-title {
+    display: none;
+  }
+}
+
+
+    .nav-wrap{margin-left:auto;display:flex;align-items:center;gap:12px}
+    nav.primary{display:flex;gap:12px;align-items:center}
+    nav.primary a{color:#fffbd6;text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
+    nav.primary a:hover{background:var(--gold);color:var(--green)}
+    .header-ctas{display:flex;gap:10px;align-items:center}
+    .btn-cta{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border-radius:10px;font-weight:700;color:#fff;text-decoration:none;background:rgba(255,255,255,0.06)}
+    .btn-cta.primary{background:var(--gold);color:var(--green);border:none}
+    .btn-cta img{width:18px;height:18px}
+    .menu-btn{display:none;background:transparent;border:none;color:#fff;font-size:26px;padding:6px;cursor:pointer}
+
+    /* HERO: full-bleed, taller on desktop; mobile-first adjustments for better visibility */
+    .hero{
+      position:relative;width:100%;overflow:hidden;
+      min-height:70vh; /* on desktops will expand */
+      max-height:1100px;
+    }
+    .slides{position:absolute;inset:0}
+    .slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease;will-change:opacity}
+    .slides img.active{opacity:1}
+    /* overlay */
+    .hero-overlay{
+      position:absolute;left:20px;bottom:20px;z-index:6;background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.62));
+      color:var(--gold);padding:14px;border-radius:12px;max-width:760px;border:1px solid rgba(212,175,55,0.10);
+      backdrop-filter: blur(2px);
+    }
+    .hero-overlay h1{font-family:"Playfair Display",serif;font-size:32px;margin:0;color:var(--gold)}
+    .hero-overlay p{margin:8px 0 0 0;color:#fffbd6}
+    .hero-actions{display:flex;gap:10px;margin-top:12px}
+    .btn{padding:10px 14px;border-radius:10px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+    .btn.gold{background:var(--gold);color:var(--green)}
+    .btn.ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.12)}
+
+    /* content */
+    .container{max-width:var(--max-width);margin:28px auto;padding:0 16px}
+    .section-title{text-align:center;color:var(--green);font-size:26px;margin-bottom:18px;font-weight:700}
+    .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+    .card img{width:100%;height:260px;object-fit:cover}
+    .card .card-body{padding:12px;text-align:center;color:#555;font-weight:600}
+    .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .service{background:#fff;padding:12px;border-radius:12px;box-shadow:var(--shadow);text-align:center}
+    .service img{width:100%;height:160px;object-fit:cover;border-radius:10px}
+    .contact-card{background:#fff;padding:14px;border-radius:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px}
+    .map-wrap{border-radius:12px;overflow:hidden;height:420px}
+    .map-wrap iframe{width:100%;height:100%;border:0;display:block}
+
+    /* floating Book Now */
+    .floating{position:fixed;right:14px;bottom:14px;z-index:140}
+    .floating a{display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;font-weight:800;color:#fff;text-decoration:none;background:linear-gradient(135deg,#D4AF37 0%, #0f604f 100%);box-shadow:var(--shadow)}
+
+    /* lightbox and modal */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;z-index:220;padding:12px}
+    .lightbox.active{display:flex}
+    .lightbox img{max-width:96%;max-height:96%;border-radius:10px;box-shadow:0 14px 40px rgba(0,0,0,0.4)}
+    .lightbox-close{position:fixed;top:18px;right:18px;color:#fff;font-size:32px;font-weight:700;cursor:pointer;z-index:230}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:230;padding:12px}
+    .modal.active{display:flex}
+    .modal-content{background:#fff;padding:16px;border-radius:12px;width:100%;max-width:480px;box-shadow:var(--shadow)}
+    .modal-content input,.modal-content select,.modal-content textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid #ddd}
+
+    /* footer */
+    .site-footer{background:var(--green);color:#F5F5DC;text-align:center;padding:16px;margin-top:22px}
+    .site-footer a{color:#fffbd6;text-decoration:none;display:inline-flex;align-items:center;gap:8px;margin:0 8px;font-weight:600}
+    .site-footer a img{width:20px;height:20px}
+
+    /* consent */
+    .consent{position:fixed;left:12px;right:12px;bottom:18px;background:rgba(255,255,255,0.98);border-radius:12px;padding:12px 14px;display:none;gap:12px;align-items:center;z-index:1000;max-width:calc(var(--max-width) - 40px);margin:0 auto;box-shadow:var(--shadow)}
+    .consent p{margin:0;color:#222}
+    .consent .consent-actions{margin-left:auto;display:flex;gap:8px}
+
+    /* Responsive behavior */
+    @media (max-width:980px){
+      .hero{min-height:62vh}
+      .logo-box{width:130px}
+      .logo-box img, .logo-box svg{max-height:66px}
+      .brand-title{font-size:20px}
+      nav.primary{display:none}
+      .menu-btn{display:inline-block}
+      .gallery-grid{grid-template-columns:repeat(1,1fr)}
+      .card img{height:300px}
+      .services-grid{grid-template-columns:repeat(1,1fr)}
+      .hero-overlay{left:16px;right:16px;bottom:18px;padding:14px}
+      .hero-overlay h1{font-size:22px}
+      .map-wrap{height:360px}
+    }
+    @media (max-width:480px){
+      .hero{min-height:75vh} /* more cover on phones */
+      .logo-box{width:120px;height:58px}
+      .logo-box img, .logo-box svg{max-height:58px}
+      .brand-title{display:none}
+      .card img{height:220px}
+      .map-wrap{height:300px}
+      .hero-overlay h1{font-size:20px}
+      .hero-overlay p{font-size:14px}
+      .floating a{min-width:110px}
+    }
+
+    /* reduce motion preference */
+    @media (prefers-reduced-motion: reduce){
+      .slides img{transition:none!important}
+    }
+
+    a:focus,button:focus,input:focus,textarea:focus{outline:3px solid rgba(212,175,55,0.24);outline-offset:2px}
+  </style>
 </head>
 <body>
-    <header>
-        <img src="Palm_Logo.png" alt="Banquet Logo">
-        <h1>The Palm Banquet</h1>
-        <p>🌟 Celebrate in Style at The Palm Banquet! 🥂</p>
-    </header>
+  <a class="skip-link" href="#home">Skip to content</a>
 
-    <div class="content">
-        <div class="section">
-            <h2>Our Offerings</h2>
-            <ul>
-                <li>Elegant Party Halls</li>
-                <li>Gourmet Food & Catering</li>
-                <li>Professional Event Planning</li>
-                <li>Customized Decorations</li>
-                <li>Luxurious Ambience</li>
-            </ul>
-        </div>
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="header-inner" id="headerInner" role="navigation" aria-label="Main">
+      <div style="display:flex;align-items:center;gap:12px;min-width:0">
+        <div class="logo-wrap">
+          <div class="logo-box">
+    <img id="siteLogo" 
+         src="Palm_logo.PNG" 
+         alt="The Palm Banquet" 
+         style="height:72px; width:auto; display:block;" 
+         onerror="this.style.display='none'; document.getElementById('svgLogo').style.display='block';" />
 
-        <div class="section">
-            <h2>Timings</h2>
-            <p>Available for booking from 10:00 AM to 11:00 PM (Events vary by request)</p>
-        </div>
+    <!-- fallback only if PNG fails -->
+    <svg id="svgLogo" width="200" height="70" style="display:none;">
+        <text x="0" y="36" font-family="Playfair Display" font-size="26" fill="#D4AF37" font-weight="700">THE PALM</text>
+        <text x="0" y="62" font-family="Playfair Display" font-size="18" fill="#D4AF37" font-weight="700">BANQUET</text>
+    </svg>
+</div>
 
-        <div class="section">
-            <h2>Pricing</h2>
-            <ul>
-                <li>₹800/- Per Person for Banquet Events</li>
-                <li>₹1200/- Per Person for Weddings</li>
-                <li>₹500/- Per Child (under 10 years)</li>
-                <li>Special Discounts for Weekdays</li>
-                <li>Saturday and Sunday: ₹100 Extra on All Packages</li>
-            </ul>
-        </div>
+<!-- Always show heading on desktop -->
+<div class="brand-title" id="brandTitle">THE PALM BANQUET</div>
 
-        <div class="section">
-            <h2>Address & Contact</h2>
-            <p><strong>Address:</strong> The Palm Banquet,Plot No. 68/2, Near Mahatma Gandhi Hospital Goner Road, Tonk Rd, opp. Choki Dhani, Sitapura, Jaipur, Rajasthan 302022</p>
-            <p><strong>Book Now:</strong> <a href="tel:+919462015450" style="color:#007ba7; text-decoration:none;">9462015450</a>, <a href="tel:+919414071245" style="color:#007ba7; text-decoration:none;">9414071245</a></p>
-            <div class="map-container">
-             <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3562.3065359303155!2d75.83902447596803!3d26.766497066357736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396dc9f5bf7de593%3A0x3631a1e1ac757557!2sThe%20Palm%20Banquet%20by%20The%20South%20WaterPark!5e0!3m2!1sen!2sin!4v1764168177290!5m2!1sen!2sin" 
-                width="600" 
-                height="450"
-                style="border:0;"
-                allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-            </div>
         </div>
+      </div>
+
+      <div class="nav-wrap">
+        <nav class="primary" aria-label="Primary navigation">
+          <a href="#home">Home</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+
+        <div class="header-ctas">
+          <a class="btn-cta" href="tel:+919462015450" aria-label="Call"><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="">Call</a>
+          <a class="btn-cta primary" href="https://wa.me/919462015450" aria-label="WhatsApp" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="">WhatsApp</a>
+        </div>
+      </div>
     </div>
-    <div class="call-now-button">
-        <a href="tel:+919462015450">Call Now 📞: 9462015450</a>
-        <a href="https://wa.me/919462015450" class="whatsapp-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-</a>
+  </header>
 
+  <!-- Mobile menu overlay -->
+  <nav id="mobileNav" aria-hidden="true" style="display:none;position:fixed;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.96),rgba(0,0,0,0.98));z-index:250;padding:28px">
+    <button id="mobileClose" aria-label="Close menu" style="background:transparent;border:none;color:#fff;font-size:30px;position:absolute;right:18px;top:18px">×</button>
+    <div style="margin-top:48px;display:flex;flex-direction:column;gap:18px">
+      <a href="#home" style="color:#fff;font-size:20px;text-decoration:none;font-weight:700">Home</a>
+      <a href="#gallery" style="color:#fff;font-size:20px;text-decoration:none;font-weight:700">Gallery</a>
+      <a href="#services" style="color:#fff;font-size:20px;text-decoration:none;font-weight:700">Services</a>
+      <a href="#contact" style="color:#fff;font-size:20px;text-decoration:none;font-weight:700">Contact</a>
+      <a href="tel:+919462015450" style="color:#fff;font-size:18px;text-decoration:none;font-weight:700;margin-top:10px">Call: +91 94620 15450</a>
+      <a href="https://wa.me/919462015450" style="color:#fff;font-size:18px;text-decoration:none;font-weight:700">WhatsApp Us</a>
     </div>
-    
+  </nav>
 
-    <footer>
-        <p>&copy; 2024 The Palm Banquet. All rights reserved.</p>
-        <div class="social-media">
-            <a href="https://www.facebook.com/thesouthwaterparkpalmbanquet/" target="_blank">Facebook</a>
-            <a href="https://www.instagram.com/thesouthwaterpark_palmbanquet/" target="_blank">Instagram</a>
-            <a href="https://g.co/kgs/wb7zAzh" target="_blank">Google</a>
-        </div>
-    </footer>
+  <!-- HERO: slideshow -->
+  <main id="home" class="hero" role="main" tabindex="-1">
+    <div class="slides" aria-hidden="false">
+      <img src="DSC_7804.JPG" alt="Banquet wide view" class="active" loading="lazy">
+      <img src="DSC_7803.JPG" alt="Stage and seating" loading="lazy">
+      <img src="DSC_7800.JPG" alt="Decor and setup" loading="lazy">
+      <img src="DSC_7801.JPG" alt="Lighting and ambience" loading="lazy">
+    </div>
+
+    <div class="hero-overlay" role="region" aria-live="polite">
+      <h1 id="heroTitle">Moments Designed to Be Remembered</h1>
+      <p id="heroSub">Elegant venue. Curated catering. Professional event support — for weddings, corporate and private celebrations.</p>
+      <div class="hero-actions">
+        <a class="btn gold" id="openBookBtn">Book Now</a>
+        <a class="btn ghost" href="#contact">Get Directions</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Gallery -->
+  <section class="container" id="gallery" aria-labelledby="galleryTitle">
+    <h2 id="galleryTitle" class="section-title">Venue Highlights</h2>
+    <div class="gallery-grid" role="list">
+      <div class="card" role="listitem"><img src="DSC_7804.JPG" alt="Grand hall" loading="lazy"><div class="card-body">Grand hall with premium ambience</div></div>
+      <div class="card" role="listitem"><img src="DSC_7803.JPG" alt="Stage setup" loading="lazy"><div class="card-body">Custom stage & seating</div></div>
+      <div class="card" role="listitem"><img src="DSC_7801.JPG" alt="Decor" loading="lazy"><div class="card-body">Bespoke decoration themes</div></div>
+      <div class="card" role="listitem"><img src="DSC_7800.JPG" alt="Dining" loading="lazy"><div class="card-body">Fine dining & catering</div></div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="container" id="services" aria-labelledby="servicesTitle">
+    <h2 id="servicesTitle" class="section-title">Services</h2>
+    <div class="services-grid" role="list">
+      <div class="service" role="listitem"><img src="DSC_7804.JPG" alt=""><h3>Event Coordination</h3><p>End-to-end planning and on-site management.</p></div>
+      <div class="service" role="listitem"><img src="DSC_7803.JPG" alt=""><h3>Decor & Theming</h3><p>Custom themes crafted to your taste.</p></div>
+      <div class="service" role="listitem"><img src="DSC_7801.JPG" alt=""><h3>Catering</h3><p>Multi-cuisine menus & tasting sessions.</p></div>
+      <div class="service" role="listitem"><img src="DSC_7800.JPG" alt=""><h3>Lighting & AV</h3><p>Professional sound and lighting.</p></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="container" id="contact" aria-labelledby="contactTitle">
+    <h2 id="contactTitle" class="section-title">Get in Touch</h2>
+    <div class="contact-card" role="region">
+      <p><strong>Address:</strong> Plot No. 68/2, Near Mahatma Gandhi Hospital, Goner Road, Opp. Chokhi Dhani, Sitapura, Jaipur</p>
+      <p><strong>Phone:</strong> <a href="tel:+919462015450">+91 94620 15450</a></p>
+      <p><strong>Alternate:</strong> <a href="tel:+919414071245">+91 94140 71245</a></p>
+      <div class="map-wrap" aria-hidden="false">
+        <!-- exact iframe you gave -->
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3562.3065359303155!2d75.83902447596803!3d26.766497066357736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396dc9f5bf7de593%3A0x3631a1e1ac757557!2sThe%20Palm%20Banquet%20by%20The%20South%20WaterPark!5e0!3m2!1sen!2sin!4v1764168177290!5m2!1sen!2sin" 
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lbClose" aria-label="Close">×</button>
+    <img id="lightboxImg" src="" alt="Expanded image">
+  </div>
+
+  <!-- Booking Modal -->
+  <div class="modal" id="bookingModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <h2>Quick Enquiry</h2>
+      <input id="b_name" type="text" placeholder="Your Name" />
+      <select id="b_event"><option value="" disabled selected>Event Type (Wedding, Reception...)</option><option>Wedding</option><option>Reception</option><option>Corporate</option><option>Birthday</option><option>Other</option></select>
+      <input id="b_date" type="date" />
+      <input id="b_guests" type="number" placeholder="Number of Guests" />
+      <textarea id="b_msg" rows="3" placeholder="Any special requirements or notes"></textarea>
+      <div class="modal-actions" style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn-modal cancel" id="modalCancel">Cancel</button>
+        <button class="btn-modal whatsapp" id="modalSend">Send via WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating -->
+  <div class="floating"><a id="floatBook" href="javascript:void(0)">Book Now</a></div>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <p>&copy; 2026 The Palm Banquet. All rights reserved.</p>
+    <div class="social">
+      <a href="https://www.facebook.com/thesouthwaterparkpalmbanquet/" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="">Facebook</a>
+      <a href="https://www.instagram.com/thepalmbanquethall/" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="">Instagram</a>
+      <a href="https://wa.me/919462015450" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="">WhatsApp</a>
+      <a href="https://g.co/kgs/wb7zAzh" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="">Google</a>
+    </div>
+  </footer>
+
+  <!-- Consent -->
+  <div class="consent" id="consentBanner" style="display:none">
+    <div><p><strong>Privacy & analytics</strong><br>We use analytics to improve this site. Accept to enable Google Analytics. You can still contact us via WhatsApp — no email is stored.</p></div>
+    <div class="consent-actions">
+      <button id="consentReject" style="background:#eee;padding:8px 12px;border-radius:8px">Reject</button>
+      <button id="consentAccept" style="background:var(--gold);color:var(--green);padding:8px 12px;border-radius:8px">Accept</button>
+    </div>
+  </div>
+
+  <script>
+  /* ---------------- CONFIG ---------------- */
+  const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // replace with your GA4 id to enable analytics
+
+  /* ---------------- Logo loader (tries variants in root and images/) ----------------
+     - It sets #siteLogo.src to the first file that loads successfully.
+     - If none load, it hides the image and shows the inline SVG fallback.
+     - It prints the chosen file to console for debugging (open DevTools -> Console).
+  --------------------------------------------------------- */
+  (function loadLogoVariants(){
+    const imgEl = document.getElementById('siteLogo');
+    const svgEl = document.getElementById('svgLogo');
+    const headerInner = document.getElementById('headerInner');
+
+    const variants = [
+      'Palm_logo.PNG','Palm_logo.png','palm_logo.PNG','palm_logo.png',
+      'Palm-Logo.PNG','PalmLogo.PNG','logo.PNG','logo.png','Palm_logo.webp'
+    ];
+    const paths = ['', 'images/']; // try root then images/ folder
+
+    let found = false;
+    let tries = [];
+
+    // helper tries each path+filename by constructing an Image and listening for onload/error
+    (async function tryAll(){
+      for (const p of paths){
+        for (const v of variants){
+          const url = p + v;
+          // use an Image object to test load without changing visible src yet
+          const tester = new Image();
+          tester.src = url;
+          // eslint-disable-next-line no-await-in-loop
+          const ok = await new Promise(resolve => {
+            tester.onload = ()=> resolve(true);
+            tester.onerror = ()=> resolve(false);
+            // timeout safety (2s)
+            setTimeout(()=> resolve(false), 2000);
+          });
+          tries.push({url, ok});
+          if (ok){
+            imgEl.src = url;
+            imgEl.style.display = 'block';
+            svgEl.style.display = 'none';
+            headerInner.classList.add('has-image');
+            found = true;
+            console.log('Logo loaded from:', url);
+            return;
+          }
+        }
+      }
+      // if none found
+      imgEl.style.display = 'none';
+      svgEl.style.display = 'block';
+      headerInner.classList.remove('has-image');
+      console.log('No logo file found. Tried:', tries.map(t=>t.url).join(', '));
+    })();
+  })();
+
+  /* ---------------- Consent banner and GA loader ---------------- */
+  (function handleConsent(){
+    const key = 'palm_consent';
+    const banner = document.getElementById('consentBanner');
+    const saved = localStorage.getItem(key);
+    function loadGA(){
+      if(!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') return;
+      if(window.gaLoaded) return;
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID, { 'anonymize_ip': true });
+      const s = document.createElement('script'); s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`; s.async=true; document.head.appendChild(s);
+      window.gaLoaded = true;
+    }
+    if(saved === 'yes'){ loadGA(); }
+    else if(saved === 'no'){ /* nothing */ }
+    else { banner.style.display = 'flex'; }
+    document.getElementById('consentAccept').addEventListener('click', ()=>{
+      localStorage.setItem(key,'yes'); banner.style.display='none'; loadGA();
+    });
+    document.getElementById('consentReject').addEventListener('click', ()=>{
+      localStorage.setItem(key,'no'); banner.style.display='none';
+    });
+  })();
+
+  /* ---------------- Lightweight slideshow ---------------- */
+  (function slideshow(){
+    const slides = document.querySelectorAll('.slides img');
+    if(!slides.length) return;
+    let idx = 0;
+    slides.forEach((s,i)=> s.classList.toggle('active', i===0));
+    const INTERVAL = 4200;
+    setInterval(()=>{
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    }, INTERVAL);
+  })();
+
+  /* ---------------- Lightbox ---------------- */
+  (function lightbox(){
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const lbClose = document.getElementById('lbClose');
+    document.querySelectorAll('.gallery-grid img, .card img, .service img').forEach(img=>{
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', ()=> {
+        lbImg.src = img.src;
+        lb.classList.add('active');
+        lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    function close(){ lb.classList.remove('active'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; }
+    lbClose.addEventListener('click', close);
+    lb.addEventListener('click', e => { if(e.target === lb) close(); });
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') close(); });
+  })();
+
+  /* ---------------- Booking modal -> WhatsApp ---------------- */
+  (function booking(){
+    const modal = document.getElementById('bookingModal');
+    const openBtn = document.getElementById('openBookBtn');
+    const floatBtn = document.getElementById('floatBook');
+    const cancel = document.getElementById('modalCancel');
+    const send = document.getElementById('modalSend');
+    function open(){ modal.classList.add('active'); modal.setAttribute('aria-hidden','false'); const f = modal.querySelector('input,select,textarea'); if(f) f.focus(); document.body.style.overflow='hidden'; }
+    function close(){ modal.classList.remove('active'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+    openBtn && openBtn.addEventListener('click', open);
+    floatBtn && floatBtn.addEventListener('click', open);
+    cancel && cancel.addEventListener('click', close);
+    send && send.addEventListener('click', ()=>{
+      const name = encodeURIComponent(document.getElementById('b_name').value || '—');
+      const ev = encodeURIComponent(document.getElementById('b_event').value || '—');
+      const date = encodeURIComponent(document.getElementById('b_date').value || '—');
+      const guests = encodeURIComponent(document.getElementById('b_guests').value || '—');
+      const msg = encodeURIComponent(document.getElementById('b_msg').value || '—');
+      const text = `New Booking Enquiry%0AName: ${name}%0AEvent: ${ev}%0ADate: ${date}%0AGuests: ${guests}%0ANotes: ${msg}`;
+      const phone = '919462015450';
+      window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+    });
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') close(); });
+  })();
+
+  /* ---------------- Mobile nav ---------------- */
+  (function mobileNav(){
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileClose = document.getElementById('mobileClose');
+    if(menuBtn){
+      menuBtn.addEventListener('click', ()=> {
+        mobileNav.style.display = 'block';
+        mobileNav.setAttribute('aria-hidden','false');
+        menuBtn.setAttribute('aria-expanded','true');
+      });
+    }
+    if(mobileClose){
+      mobileClose.addEventListener('click', ()=> {
+        mobileNav.style.display = 'none';
+        mobileNav.setAttribute('aria-hidden','true');
+        menuBtn && menuBtn.setAttribute('aria-expanded','false');
+      });
+    }
+    mobileNav.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> {
+      mobileNav.style.display = 'none';
+      menuBtn && menuBtn.setAttribute('aria-expanded','false');
+    }));
+  })();
+
+  /* ---------------- Smooth anchor scroll ---------------- */
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const href = a.getAttribute('href');
+      if(href && href.length > 1){
+        e.preventDefault();
+        const el = document.querySelector(href);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+
+  /* ---------------- Keyboard helpers ---------------- */
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'Escape'){
+      // close mobile nav if open
+      const mobileNav = document.getElementById('mobileNav');
+      if(mobileNav && mobileNav.style.display === 'block'){ mobileNav.style.display = 'none'; }
+    }
+  });
+  </script>
 </body>
 </html>
-
