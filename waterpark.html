@@ -74,44 +74,33 @@ nav.primary{margin-left:auto;display:flex;gap:14px}
 nav.primary a{color:white;font-weight:600;padding:8px 10px;border-radius:6px}
 nav.primary a:hover{background:white;color:var(--teal)}
 .menu-btn{display:none;background:none;border:0;color:white;font-size:28px}
-.header-ctas{display:flex;gap:12px;margin-left:12px;align-items:center}
-.header-ctas a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;font-weight:700;color:white}
-.call-btn{background:rgba(255,255,255,0.18)}
+.header-ctas{display:flex;gap:12px;margin-left:12px;align-items:center;flex-shrink:0}
+.header-ctas a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;font-weight:700;color:white;text-decoration:none}
+.call-btn{background:rgba(255,255,255,0.18);color:#fff}
 .whatsapp-btn{background:var(--aqua);color:#013d48}
-.header-ctas img{width:18px;height:18px}
+.header-ctas img{width:18px;height:18px;display:block}
 
-/* ---------- MOBILE: make it look like The Palm Banquet ---------- */
+/* ---------- MOBILE: match Palm Banquet feel, show text too ---------- */
 @media (max-width:760px){
-  /* show menu button, hide desktop nav */
   nav.primary{display:none}
   .menu-btn{display:block}
+  .header-inner{align-items:center;padding:8px 12px;gap:12px}
+  .logo-box img{height:92px;flex-shrink:0}
+  .brand-title{font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-  /* reduce header padding like Palm but keep large logo left */
-  .header-inner{
-    align-items:center;padding:8px 12px;gap:12px;
-  }
-  .logo-box img{
-    height:92px; /* slightly larger on phone but fits */
-    flex-shrink:0;
-  }
+  /* keep CTA text visible but compact, prevent overflow */
+  .header-ctas{margin-left:auto;gap:8px}
+  .header-ctas a{padding:6px 8px;border-radius:10px;font-size:14px}
+  .header-ctas img{width:18px;height:18px}
+  .header-ctas a span{display:inline-block}
+}
 
-  /* brand title: single-line scaled to fit */
-  .brand-title{
-    font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  }
-
-  /* Fix CTA overflow: on mobile show icon-only buttons with accessible labels */
-  .header-ctas{
-    margin-left:auto;gap:8px;
-  }
-  .header-ctas a{padding:8px;border-radius:10px;min-width:44px;justify-content:center}
-  .header-ctas a span{display:none} /* hide textual label visually on very small screens */
-  .header-ctas img{width:22px;height:22px}
-
-  /* For slightly larger phones show label next to icon */
-  @media (min-width:420px){
-    .header-ctas a span{display:inline-block;margin-left:6px}
-  }
+/* On very narrow phones, allow wrapping inside header-ctas but keep compact */
+@media (max-width:360px){
+  .header-inner{gap:8px}
+  .header-ctas{gap:6px}
+  .header-ctas a{padding:6px 6px;font-size:13px}
+  .brand-title{font-size:15px}
 }
 
 /* Mobile menu panel (Palm-style) */
@@ -125,9 +114,12 @@ nav.primary a:hover{background:white;color:var(--teal)}
 #mobileNav .mobile-top img{height:70px;display:block}
 #mobileNav .mobile-title{font-family:"Playfair Display";font-size:20px;color:var(--aqua);font-weight:700}
 #mobileNav nav a{display:block;color:#fff;font-size:20px;text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
-#mobileNav .mobile-ctas{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
-#mobileNav .mobile-ctas a{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);color:#fff;padding:10px 12px;border-radius:10px;font-weight:700;text-decoration:none}
 #mobileClose{position:absolute;right:18px;top:18px;background:none;border:0;color:white;font-size:30px}
+
+/* compact CTAs inside mobile menu */
+#mobileNav .mobile-ctas{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+#mobileNav .mobile-ctas a{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);color:#fff;padding:8px 10px;border-radius:8px;font-weight:700;text-decoration:none;font-size:15px}
+#mobileNav .mobile-ctas img{width:16px;height:16px;display:block}
 
 /* ---------- HERO / SLIDES ---------- */
 .hero{position:relative;min-height:78vh;overflow:hidden}
@@ -146,7 +138,7 @@ nav.primary a:hover{background:white;color:var(--teal)}
 .btn.ghost{background:transparent;color:white;border:2px solid rgba(255,255,255,0.12)}
 .btn:hover{transform:translateY(-4px)}
 
-/* ---------- REST OF SITE (unchanged desktop behaviour) ---------- */
+/* ---------- REST OF SITE ---------- */
 .container{max-width:var(--max-width);margin:auto;padding:26px 16px}
 .section-title{font-size:26px;color:var(--teal);font-weight:700;margin-bottom:12px}
 
@@ -224,7 +216,7 @@ footer img{width:18px;height:18px}
     <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
 
     <div class="header-ctas" role="group" aria-label="Contact actions">
-      <!-- Icon-first for phones; label shown on wider phones -->
+      <!-- Icon + text visible on all breakpoints; sizing handled in CSS -->
       <a class="call-btn" href="tel:+919462015450" data-tooltip="Call us to book" aria-label="Call">
         <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="call icon"><span>Call</span>
       </a>
