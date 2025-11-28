@@ -47,18 +47,29 @@ body{
 .fade-up{opacity:0;transform:translateY(26px);animation:fadeUp .9s forwards}
 @keyframes fadeUp{to{opacity:1;transform:none}}
 
-/* header - desktop */
-header.site-header{position:sticky;top:0;z-index:200;background:var(--teal);border-bottom:4px solid var(--aqua);box-shadow:0 6px 20px rgba(0,0,0,0.12)}
-.header-inner{max-width:var(--max-width);margin:auto;display:flex;align-items:center;padding:10px 16px;gap:16px}
+/* ---------- HEADER (desktop preserved) ---------- */
+header.site-header{
+  position:sticky;top:0;z-index:200;background:var(--teal);border-bottom:4px solid var(--aqua);box-shadow:0 6px 20px rgba(0,0,0,0.12)
+}
+.header-inner{
+  max-width:var(--max-width);
+  margin:auto;
+  display:flex;
+  align-items:center;
+  padding:10px 16px;
+  gap:16px;
+}
 
 /* logo */
 .logo-box{display:flex;align-items:center;flex:0 0 auto}
 .logo-box img{height:105px;width:auto;display:block}
 
 /* brand title single line */
-.brand-title{color:white;font-family:"Playfair Display";font-size:26px;font-weight:700;margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-title{
+  color:white;font-family:"Playfair Display";font-size:26px;font-weight:700;margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
 
-/* nav + ctas */
+/* nav & CTAs (desktop) */
 nav.primary{margin-left:auto;display:flex;gap:14px}
 nav.primary a{color:white;font-weight:600;padding:8px 10px;border-radius:6px}
 nav.primary a:hover{background:white;color:var(--teal)}
@@ -69,47 +80,77 @@ nav.primary a:hover{background:white;color:var(--teal)}
 .whatsapp-btn{background:var(--aqua);color:#013d48}
 .header-ctas img{width:18px;height:18px}
 
-/* mobile-specific adjustments to match Palm Banquet feel */
-@media (max-width:980px){
+/* ---------- MOBILE: make it look like The Palm Banquet ---------- */
+@media (max-width:760px){
+  /* show menu button, hide desktop nav */
   nav.primary{display:none}
   .menu-btn{display:block}
+
+  /* reduce header padding like Palm but keep large logo left */
+  .header-inner{
+    align-items:center;padding:8px 12px;gap:12px;
+  }
+  .logo-box img{
+    height:92px; /* slightly larger on phone but fits */
+    flex-shrink:0;
+  }
+
+  /* brand title: single-line scaled to fit */
+  .brand-title{
+    font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+
+  /* Fix CTA overflow: on mobile show icon-only buttons with accessible labels */
+  .header-ctas{
+    margin-left:auto;gap:8px;
+  }
+  .header-ctas a{padding:8px;border-radius:10px;min-width:44px;justify-content:center}
+  .header-ctas a span{display:none} /* hide textual label visually on very small screens */
+  .header-ctas img{width:22px;height:22px}
+
+  /* For slightly larger phones show label next to icon */
+  @media (min-width:420px){
+    .header-ctas a span{display:inline-block;margin-left:6px}
+  }
 }
 
-/* PHONE LAYOUT (match Palm Banquet) */
-@media (max-width:480px){
-  /* Slimmer header like Palm Banquet, but logo larger and pinned top-left */
-  header.site-header{padding:6px 8px}
-  .header-inner{align-items:center;gap:10px;padding:8px 12px}
-  .logo-box img{height:110px} /* larger logo on phones */
-  .brand-title{font-size:18px;margin-left:8px;white-space:nowrap} /* keep single-line */
-  .header-ctas{margin-left:auto;gap:8px}
-  .call-btn,.whatsapp-btn{padding:8px 10px;font-size:14px}
+/* Mobile menu panel (Palm-style) */
+#mobileNav{
+  display:none;position:fixed;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.96),rgba(0,0,0,0.98));z-index:300;padding:22px;
+  color:#fff;overflow:auto;
 }
+#mobileNav .mobile-top{
+  display:flex;align-items:center;gap:12px;margin-bottom:18px;
+}
+#mobileNav .mobile-top img{height:70px;display:block}
+#mobileNav .mobile-title{font-family:"Playfair Display";font-size:20px;color:var(--aqua);font-weight:700}
+#mobileNav nav a{display:block;color:#fff;font-size:20px;text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
+#mobileNav .mobile-ctas{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+#mobileNav .mobile-ctas a{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);color:#fff;padding:10px 12px;border-radius:10px;font-weight:700;text-decoration:none}
+#mobileClose{position:absolute;right:18px;top:18px;background:none;border:0;color:white;font-size:30px}
 
-/* hero / slideshow */
+/* ---------- HERO / SLIDES ---------- */
 .hero{position:relative;min-height:78vh;overflow:hidden}
 .slides{position:absolute;inset:0}
 .slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s}
 .slides img.active{opacity:1}
 
-/* hero overlay */
+/* overlay */
 .hero-overlay{position:absolute;left:18px;bottom:36px;background:linear-gradient(180deg,rgba(0,0,0,0.35),rgba(0,0,0,0.62));padding:18px;border-radius:10px;max-width:640px}
 .hero-overlay h1{font-family:"Playfair Display";color:white;font-size:30px;margin:0}
 .hero-overlay p{color:#eaf9fb;margin-top:8px}
 
-/* buttons */
-.btn{padding:10px 14px;border-radius:10px;font-weight:800;display:inline-flex;gap:8px;align-items:center;cursor:pointer;transition:transform .18s,box-shadow .18s}
+/* controls & buttons */
+.btn{padding:10px 14px;border-radius:10px;font-weight:800;display:inline-flex;gap:8px;align-items:center;cursor:pointer;transition:transform .18s}
 .btn.book{background:var(--aqua);color:#013d48}
 .btn.ghost{background:transparent;color:white;border:2px solid rgba(255,255,255,0.12)}
-.btn:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.18)}
+.btn:hover{transform:translateY(-4px)}
 
-/* container */
+/* ---------- REST OF SITE (unchanged desktop behaviour) ---------- */
 .container{max-width:var(--max-width);margin:auto;padding:26px 16px}
-
-/* titles */
 .section-title{font-size:26px;color:var(--teal);font-weight:700;margin-bottom:12px}
 
-/* gallery - exactly 4 photos, large on phone */
+/* gallery: only the 4 images set earlier */
 .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .gallery-grid img{width:100%;height:320px;object-fit:cover;border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,0.12);transition:transform .24s}
 .gallery-grid img:hover{transform:scale(1.03)}
@@ -136,7 +177,7 @@ nav.primary a:hover{background:white;color:var(--teal)}
 .floating a{display:inline-flex;padding:12px 14px;border-radius:10px;background:linear-gradient(135deg,var(--aqua),var(--teal));color:white;font-weight:800;box-shadow:var(--shadow);transition:transform .16s}
 .floating a:hover{transform:translateY(-6px)}
 
-/* lightbox + modal */
+/* lightbox & modal */
 .lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:900}
 .lightbox.active{display:flex}
 .lightbox img{max-width:96%;max-height:96%;border-radius:10px}
@@ -150,26 +191,27 @@ footer{background:var(--teal);color:white;padding:18px;text-align:center}
 footer a{color:white;font-weight:700;margin:0 8px;display:inline-flex;align-items:center;gap:8px}
 footer img{width:18px;height:18px}
 
-/* responsive micro-tweaks */
-@media (max-width:760px){
-  .hero-overlay{left:12px;right:12px;bottom:18px;padding:14px}
-  .hero-overlay h1{font-size:22px}
-  .gallery-grid img{height:220px}
-  .service-card img{height:160px}
-  .map-wrap{height:280px}
+/* resp small tweaks */
+@media (max-width:420px){
+  .logo-box img{height:98px}
+  .brand-title{font-size:15px}
+  .gallery-grid img{height:200px}
+  .map-wrap{height:240px}
+  .hero-overlay h1{font-size:20px}
 }
 </style>
 </head>
 <body>
 
-<!-- header -->
+<!-- HEADER -->
 <header class="site-header" role="banner">
   <div class="header-inner" id="headerInner">
-    <div class="logo-box">
-      <img src="The_South_Water_Park_Logo.png" alt="The South Water Park logo" id="siteLogo">
+    <div style="display:flex;align-items:center;gap:12px;min-width:0">
+      <div class="logo-box">
+        <img src="The_South_Water_Park_Logo.png" id="siteLogo" alt="The South Water Park logo">
+      </div>
+      <div class="brand-title" aria-label="The South Water Park">The South Water Park</div>
     </div>
-
-    <div class="brand-title" aria-label="The South Water Park">The South Water Park</div>
 
     <nav class="primary" aria-label="Primary navigation">
       <a href="#home">Home</a>
@@ -181,30 +223,46 @@ footer img{width:18px;height:18px}
 
     <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
 
-    <div class="header-ctas">
-      <a class="call-btn" href="tel:+919462015450" data-tooltip="Call us to book">
-        <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="">Call
+    <div class="header-ctas" role="group" aria-label="Contact actions">
+      <!-- Icon-first for phones; label shown on wider phones -->
+      <a class="call-btn" href="tel:+919462015450" data-tooltip="Call us to book" aria-label="Call">
+        <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="call icon"><span>Call</span>
       </a>
-      <a class="whatsapp-btn" href="https://wa.me/919462015450" data-tooltip="WhatsApp" target="_blank" rel="noopener">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="">WhatsApp
+      <a class="whatsapp-btn" href="https://wa.me/919462015450" data-tooltip="Message on WhatsApp" aria-label="WhatsApp" target="_blank" rel="noopener">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="whatsapp icon"><span>WhatsApp</span>
       </a>
     </div>
   </div>
 </header>
 
-<!-- mobile nav -->
-<nav id="mobileNav" aria-hidden="true" style="display:none">
-  <button id="mobileClose" aria-label="Close menu">×</button>
-  <a href="#home">Home</a>
-  <a href="#highlights">Highlights</a>
-  <a href="#services">Services</a>
-  <a href="#pricing">Pricing</a>
-  <a href="#contact">Contact</a>
-  <a href="tel:+919462015450">Call Now</a>
-  <a href="https://wa.me/919462015450">WhatsApp</a>
+<!-- MOBILE NAV (Palm-style) -->
+<nav id="mobileNav" aria-hidden="true">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:12px">
+      <img src="The_South_Water_Park_Logo.png" alt="logo" style="height:66px">
+      <div class="mobile-title">THE SOUTH WATER PARK</div>
+    </div>
+    <button id="mobileClose" aria-label="Close menu">×</button>
+  </div>
+
+  <div style="margin-top:18px">
+    <nav aria-label="Mobile primary">
+      <a href="#home">Home</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="mobile-ctas" style="margin-top:18px">
+      <a href="tel:+919462015450"><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="">Call</a>
+      <a href="https://wa.me/919462015450" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="">WhatsApp</a>
+      <a href="#pricing" style="background:linear-gradient(135deg,var(--aqua),var(--teal));color:#013d48">Book Now</a>
+    </div>
+  </div>
 </nav>
 
-<!-- hero / slideshow (2nd and 4th already swapped earlier) -->
+<!-- HERO: slideshow -->
 <main id="home" class="hero" role="main" tabindex="-1">
   <div class="slides" aria-hidden="false">
     <img src="front_gate.png" alt="Front gate" class="active" loading="lazy">
@@ -223,7 +281,7 @@ footer img{width:18px;height:18px}
   </div>
 </main>
 
-<!-- time -->
+<!-- Time -->
 <section class="container fade-up" aria-labelledby="timeTitle">
   <div class="time-box" id="timeTitle">
     <h2>Opening Hours</h2>
@@ -231,7 +289,7 @@ footer img{width:18px;height:18px}
   </div>
 </section>
 
-<!-- highlights (exactly 4 images) -->
+<!-- Highlights (4 images) -->
 <section class="container" id="highlights" aria-labelledby="highTitle">
   <h2 class="section-title fade-up" id="highTitle">Venue Highlights</h2>
 
@@ -243,7 +301,7 @@ footer img{width:18px;height:18px}
   </div>
 </section>
 
-<!-- services -->
+<!-- Services -->
 <section class="container" id="services" aria-labelledby="servicesTitle">
   <h2 class="section-title fade-up" id="servicesTitle">Services</h2>
 
@@ -274,7 +332,7 @@ footer img{width:18px;height:18px}
   </div>
 </section>
 
-<!-- pricing -->
+<!-- Pricing -->
 <section class="container" id="pricing" aria-labelledby="pricingTitle">
   <h2 class="section-title fade-up" id="pricingTitle">Pricing</h2>
 
@@ -306,7 +364,7 @@ footer img{width:18px;height:18px}
   </div>
 </section>
 
-<!-- contact -->
+<!-- Contact -->
 <section class="container" id="contact" aria-labelledby="contactTitle">
   <h2 class="section-title fade-up" id="contactTitle">Get in Touch</h2>
 
@@ -328,10 +386,10 @@ footer img{width:18px;height:18px}
   </div>
 </section>
 
-<!-- footer -->
+<!-- Footer -->
 <footer role="contentinfo">
   <p>© <span id="year"></span> The South Water Park</p>
-  <div style="margin-top:10px">
+  <div style="margin-top:12px">
     <a href="https://www.facebook.com/thesouthwaterparkpalmbanquet/" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="">Facebook</a>
     <a href="https://www.instagram.com/thepalmbanquethall/" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="">Instagram</a>
     <a href="https://wa.me/919462015450" target="_blank" rel="noopener"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="">WhatsApp</a>
@@ -339,17 +397,17 @@ footer img{width:18px;height:18px}
   </div>
 </footer>
 
-<!-- floating book -->
+<!-- Floating Book -->
 <div class="floating">
   <a id="floatBook" data-tooltip="Quick book on WhatsApp">Book Now</a>
 </div>
 
-<!-- lightbox -->
+<!-- Lightbox -->
 <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
   <img id="lightboxImg" alt="">
 </div>
 
-<!-- booking modal -->
+<!-- Booking Modal -->
 <div class="modal" id="bookingModal" aria-hidden="true">
   <div class="modal-content" role="document">
     <h3>Quick Enquiry</h3>
@@ -366,16 +424,28 @@ footer img{width:18px;height:18px}
   </div>
 </div>
 
-<!-- tiny scripts -->
+<!-- Consent banner (placeholder, hidden) -->
+<div id="consentBanner" style="display:none"></div>
+
+<!-- SCRIPTS -->
 <script>
+  // year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // mobile nav
+  // mobile nav open/close
   const menuBtn = document.getElementById('menuBtn');
   const mobileNav = document.getElementById('mobileNav');
   const mobileClose = document.getElementById('mobileClose');
-  menuBtn && menuBtn.addEventListener('click', ()=> { mobileNav.style.display = 'block'; mobileNav.setAttribute('aria-hidden','false'); });
-  mobileClose && mobileClose.addEventListener('click', ()=> { mobileNav.style.display = 'none'; mobileNav.setAttribute('aria-hidden','true'); });
+  menuBtn && menuBtn.addEventListener('click', ()=> {
+    mobileNav.style.display = 'block';
+    mobileNav.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  });
+  mobileClose && mobileClose.addEventListener('click', ()=> {
+    mobileNav.style.display = 'none';
+    mobileNav.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  });
 
   // slideshow
   const slides = document.querySelectorAll('.slides img');
@@ -415,13 +485,16 @@ footer img{width:18px;height:18px}
   const modalSend = document.getElementById('modalSend');
   openBookBtn && openBookBtn.addEventListener('click', ()=> { bookingModal.classList.add('active'); bookingModal.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; });
   floatBook && floatBook.addEventListener('click', ()=> { bookingModal.classList.add('active'); bookingModal.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; });
+
   modalCancel && modalCancel.addEventListener('click', ()=> { bookingModal.classList.remove('active'); bookingModal.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; });
+
   modalSend && modalSend.addEventListener('click', ()=>{
     const name = encodeURIComponent(document.getElementById('b_name').value || '—');
     const type = encodeURIComponent(document.getElementById('b_event').value || '—');
     const date = encodeURIComponent(document.getElementById('b_date').value || '—');
     const guests = encodeURIComponent(document.getElementById('b_guests').value || '—');
     const msg = encodeURIComponent(document.getElementById('b_msg').value || '—');
+
     const text = `Booking Enquiry%0AName:${name}%0AType:${type}%0ADate:${date}%0APeople:${guests}%0ANotes:${msg}`;
     window.open(`https://wa.me/919462015450?text=${text}`, '_blank');
   });
@@ -431,13 +504,14 @@ footer img{width:18px;height:18px}
     if(e.key === 'Escape'){
       if(bookingModal.classList.contains('active')){ bookingModal.classList.remove('active'); bookingModal.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; }
       if(lb.classList.contains('active')){ lb.classList.remove('active'); lb.setAttribute('aria-hidden','true'); lbImg.src=''; document.body.style.overflow = ''; }
-      if(mobileNav.style.display === 'block'){ mobileNav.style.display = 'none'; mobileNav.setAttribute('aria-hidden','true'); }
+      if(mobileNav.style.display === 'block'){ mobileNav.style.display = 'none'; mobileNav.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; }
     }
   });
 
-  // logo safety check
+  // safety: logo presence
   const siteLogo = document.getElementById('siteLogo');
   setTimeout(()=> { if(!siteLogo.complete || siteLogo.naturalWidth === 0) console.warn('Logo missing: The_South_Water_Park_Logo.png'); }, 900);
 </script>
 </body>
 </html>
+
