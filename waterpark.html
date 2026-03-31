@@ -273,17 +273,18 @@ header.site-header .header-bubble{
 
 /* Header tagline styling */
 .header-tagline{
-  color:rgba(255,255,255,0.9);
-  font-size:14px;
-  font-weight:500;
+  color:rgba(255,255,255,0.95);
+  font-size:16px;
+  font-weight:600;
   margin-left:8px;
-  font-style:italic;
+  font-style:normal;
   position:relative;z-index:2;
   animation:taglineFade 2s ease-in-out infinite;
   text-shadow:1px 1px 2px rgba(0,0,0,0.3);
+  display:block;
 }
 @keyframes taglineFade{
-  0%,100%{opacity:0.8}
+  0%,100%{opacity:0.9}
   50%{opacity:1}
 }
 .header-tagline::before{
@@ -2020,43 +2021,343 @@ footer img{
 }
 
 /* Enhanced responsive design for all devices */
-/* Mobile-first approach */
+/* Mobile-first approach with full professional layout */
 
-/* Small phones (320px and up) */
+/* Small phones (320px and up) - iPhone SE, Android small screens */
 @media (max-width:480px){
-  .logo-box img{height:70px}
-  .brand-title{font-size:16px;display:block !important;white-space:normal;line-height:1.2}
-  .header-inner{padding:6px 10px;gap:8px}
+  .logo-box img{height:60px}
+  .brand-title{font-size:14px;display:block !important;white-space:normal;line-height:1.1;margin-bottom:2px}
+  .header-tagline{font-size:12px;display:block;font-weight:600}
+  .header-inner{padding:4px 8px;gap:6px;flex-wrap:wrap}
+  .header-ctas{gap:4px;margin-left:auto}
+  .header-ctas a{padding:4px 6px;border-radius:6px;font-size:10px;min-width:auto}
+  .header-ctas img{width:12px;height:12px}
+  .header-ctas span{display:none}
+  nav.primary{display:none}
+  .menu-btn{display:block;font-size:20px;padding:4px}
+  .hero{min-height:50vh}
+  .hero-overlay{left:8px;right:8px;bottom:15px;padding:8px;border-radius:8px}
+  .hero-overlay h1{font-size:16px;line-height:1.2;margin-bottom:4px}
+  .hero-overlay p{font-size:12px;margin-top:4px}
+  .btn{padding:6px 10px;font-size:12px;border-radius:6px}
+  .gallery-grid{grid-template-columns:1fr;gap:6px}
+  .gallery-grid img{height:180px;border-radius:8px}
+  .services-grid{grid-template-columns:1fr;gap:6px}
+  .service-card{padding:8px;border-radius:8px}
+  .service-card img{height:120px;border-radius:6px}
+  .section-title{font-size:18px;margin-bottom:8px}
+  .pricing-card-new{padding:8px;border-radius:8px}
+  .pricing-card-price .amount{font-size:24px}
+  .pricing-card-price .duration{font-size:11px}
+  .pricing-card-features ul{margin:0;padding:0}
+  .pricing-card-features li{font-size:11px;padding:2px 0}
+  .contact-card{padding:8px;border-radius:8px}
+  .map-wrap{height:180px;border-radius:8px}
+  .footer-brand{flex-direction:column;gap:8px;text-align:center}
+  .footer-brand img{height:40px}
+  .footer-brand h3{font-size:16px}
+  .footer-tagline{font-size:12px}
+  .footer-contact{flex-direction:column;gap:8px;text-align:center}
+  .footer-social{flex-wrap:wrap;gap:8px;justify-content:center}
+  footer a{padding:4px 8px;font-size:12px;border-radius:6px}
+  .footer-copyright{font-size:11px;text-align:center}
+  .about-section{padding:20px 10px}
+  .about-header h2{font-size:20px}
+  .about-header p{font-size:12px}
+  .about-logo img{height:60px}
+  .about-logo h3{font-size:16px}
+  .about-tagline{font-size:11px}
+  .about-details h3{font-size:16px}
+  .about-details p{font-size:12px}
+  .about-feature{flex-direction:column;gap:8px;text-align:center;padding:8px}
+  .about-stats{grid-template-columns:repeat(2,1fr);gap:8px}
+  .about-stat{padding:8px}
+  .about-stat-number{font-size:20px}
+  .about-stat-label{font-size:10px}
+}
+
+/* Medium phones (481px to 568px) - iPhone 12 mini, Android regular */
+@media (min-width:481px) and (max-width:568px){
+  .logo-box img{height:65px}
+  .brand-title{font-size:15px;display:block !important;line-height:1.1}
+  .header-tagline{font-size:10px}
+  .header-inner{padding:5px 10px;gap:8px}
+  .header-ctas{gap:5px}
+  .header-ctas a{padding:5px 7px;border-radius:7px;font-size:11px}
+  .header-ctas img{width:14px;height:14px}
+  .header-ctas span{font-size:10px}
+  .hero{min-height:55vh}
+  .hero-overlay{left:10px;right:10px;bottom:18px;padding:10px}
+  .hero-overlay h1{font-size:18px}
+  .hero-overlay p{font-size:13px}
+  .btn{padding:7px 11px;font-size:13px}
+  .gallery-grid{grid-template-columns:1fr;gap:7px}
+  .gallery-grid img{height:190px}
+  .services-grid{grid-template-columns:1fr;gap:7px}
+  .service-card{padding:9px}
+  .service-card img{height:130px}
+  .section-title{font-size:19px}
+  .pricing-card-new{padding:9px}
+  .pricing-card-price .amount{font-size:26px}
+  .contact-card{padding:9px}
+  .map-wrap{height:190px}
+  .footer-brand img{height:45px}
+  .footer-brand h3{font-size:17px}
+  .about-header h2{font-size:21px}
+  .about-details h3{font-size:17px}
+}
+
+/* Large phones (569px to 768px) - iPhone 12 Pro, iPhone 13, Samsung Galaxy */
+@media (min-width:569px) and (max-width:768px){
+  .logo-box img{height:75px}
+  .brand-title{font-size:17px;display:block !important}
+  .header-tagline{font-size:12px}
+  .header-inner{padding:6px 12px;gap:10px}
   .header-ctas{gap:6px}
   .header-ctas a{padding:6px 8px;border-radius:8px;font-size:12px}
   .header-ctas img{width:16px;height:16px}
+  .header-ctas span{font-size:11px}
   .hero{min-height:60vh}
-  .hero-overlay{left:10px;right:10px;bottom:20px;padding:12px;border-radius:10px}
-  .hero-overlay h1{font-size:20px;line-height:1.3}
-  .hero-overlay p{font-size:14px;margin-top:6px}
+  .hero-overlay{left:12px;right:12px;bottom:20px;padding:12px}
+  .hero-overlay h1{font-size:20px}
+  .hero-overlay p{font-size:14px}
   .btn{padding:8px 12px;font-size:14px}
-  .gallery-grid{grid-template-columns:1fr;gap:8px}
-  .gallery-grid img{height:200px}
-  .services-grid{grid-template-columns:1fr;gap:8px}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .gallery-grid img{height:160px}
+  .services-grid{grid-template-columns:repeat(2,1fr);gap:8px}
   .service-card{padding:10px}
-  .service-card img{height:150px}
-  .section-title{font-size:22px}
-  .pricing-card{padding:10px}
-  .contact-card{padding:12px}
+  .service-card img{height:140px}
+  .section-title{font-size:20px}
+  .pricing-card-new{padding:10px}
+  .pricing-card-price .amount{font-size:28px}
+  .contact-card{padding:10px}
   .map-wrap{height:200px}
-  .footer-brand{flex-direction:column;gap:10px}
   .footer-brand img{height:50px}
+  .footer-brand h3{font-size:18px}
+  .about-header h2{font-size:22px}
+  .about-details h3{font-size:18px}
+}
+
+/* Tablets (769px to 1024px) - iPad, iPad Air, Android tablets */
+@media (min-width:769px) and (max-width:1024px){
+  .logo-box img{height:85px}
+  .brand-title{font-size:20px}
+  .header-tagline{font-size:13px}
+  .header-inner{padding:8px 16px;gap:12px}
+  .header-ctas{gap:8px}
+  .header-ctas a{padding:7px 10px;border-radius:9px;font-size:13px}
+  .header-ctas img{width:17px;height:17px}
+  .header-ctas span{font-size:12px}
+  .hero{min-height:65vh}
+  .hero-overlay{left:15px;right:15px;bottom:25px;padding:14px}
+  .hero-overlay h1{font-size:24px}
+  .hero-overlay p{font-size:16px}
+  .btn{padding:9px 13px;font-size:15px}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .gallery-grid img{height:220px}
+  .services-grid{grid-template-columns:repeat(3,1fr);gap:10px}
+  .service-card{padding:12px}
+  .service-card img{height:160px}
+  .section-title{font-size:22px}
+  .pricing-card-new{padding:12px}
+  .pricing-card-price .amount{font-size:30px}
+  .contact-card{padding:12px}
+  .map-wrap{height:250px}
+  .footer-brand img{height:55px}
   .footer-brand h3{font-size:20px}
-  .footer-tagline{font-size:14px}
-  .footer-contact{flex-direction:column;gap:10px}
-  .footer-social{flex-wrap:wrap;gap:10px}
-  footer a{padding:6px 10px;font-size:14px}
-  .slider-item{font-size:14px;padding:0 15px}
-  .slider-item .price{font-size:16px}
-  .slider-item .book-btn{padding:5px 10px;font-size:12px}
-  .continuous-slider{padding:8px 0}
-  .floating{right:10px;bottom:70px}
-  .floating a{padding:10px 12px;font-size:14px}
+  .about-header h2{font-size:24px}
+  .about-details h3{font-size:20px}
+}
+
+/* Large tablets (1025px to 1366px) - iPad Pro, Surface Pro */
+@media (min-width:1025px) and (max-width:1366px){
+  .logo-box img{height:95px}
+  .brand-title{font-size:23px}
+  .header-tagline{font-size:14px}
+  .header-inner{padding:10px 20px;gap:14px}
+  .header-ctas{gap:10px}
+  .header-ctas a{padding:8px 12px;border-radius:10px;font-size:14px}
+  .header-ctas img{width:18px;height:18px}
+  .header-ctas span{font-size:13px}
+  .hero{min-height:70vh}
+  .hero-overlay{left:18px;right:18px;bottom:28px;padding:16px}
+  .hero-overlay h1{font-size:26px}
+  .hero-overlay p{font-size:17px}
+  .btn{padding:10px 14px;font-size:16px}
+  .gallery-grid{grid-template-columns:repeat(3,1fr);gap:12px}
+  .gallery-grid img{height:260px}
+  .services-grid{grid-template-columns:repeat(4,1fr);gap:12px}
+  .service-card{padding:14px}
+  .service-card img{height:180px}
+  .section-title{font-size:24px}
+  .pricing-card-new{padding:14px}
+  .pricing-card-price .amount{font-size:32px}
+  .contact-card{padding:14px}
+  .map-wrap{height:280px}
+  .footer-brand img{height:58px}
+  .footer-brand h3{font-size:22px}
+  .about-header h2{font-size:26px}
+  .about-details h3{font-size:22px}
+}
+
+/* Small desktops (1367px to 1440px) - Microsoft Surface, standard laptops */
+@media (min-width:1367px) and (max-width:1440px){
+  .logo-box img{height:100px}
+  .brand-title{font-size:24px}
+  .header-tagline{font-size:14px}
+  .header-inner{padding:12px 24px;gap:16px}
+  .header-ctas{gap:12px}
+  .header-ctas a{padding:9px 14px;border-radius:11px;font-size:15px}
+  .header-ctas img{width:19px;height:19px}
+  .header-ctas span{font-size:14px}
+  .hero{min-height:75vh}
+  .gallery-grid img{height:300px}
+  .services-grid{grid-template-columns:repeat(4,1fr)}
+  .service-card img{height:190px}
+  .section-title{font-size:25px}
+  .pricing-card-new{padding:16px}
+  .pricing-card-price .amount{font-size:34px}
+  .map-wrap{height:300px}
+  .footer-brand img{height:60px}
+  .footer-brand h3{font-size:23px}
+  .about-header h2{font-size:27px}
+  .about-details h3{font-size:23px}
+}
+
+/* Large desktops (1441px to 1920px) - standard desktops, iMac */
+@media (min-width:1441px) and (max-width:1920px){
+  .container{max-width:1400px}
+  .logo-box img{height:105px}
+  .brand-title{font-size:26px}
+  .header-tagline{font-size:14px}
+  .header-inner{padding:14px 28px;gap:18px}
+  .header-ctas{gap:14px}
+  .header-ctas a{padding:10px 16px;border-radius:12px;font-size:16px}
+  .header-ctas img{width:20px;height:20px}
+  .header-ctas span{font-size:15px}
+  .hero{min-height:80vh}
+  .gallery-grid img{height:350px}
+  .services-grid{grid-template-columns:repeat(4,1fr)}
+  .service-card img{height:200px}
+  .section-title{font-size:26px}
+  .pricing-card-new{padding:18px}
+  .pricing-card-price .amount{font-size:36px}
+  .map-wrap{height:320px}
+  .footer-brand img{height:62px}
+  .footer-brand h3{font-size:24px}
+  .about-header h2{font-size:28px}
+  .about-details h3{font-size:24px}
+}
+
+/* Ultra-wide desktops (1921px and up) - 4K monitors, ultra-wide displays */
+@media (min-width:1921px){
+  .container{max-width:1600px}
+  .logo-box img{height:110px}
+  .brand-title{font-size:28px}
+  .header-tagline{font-size:15px}
+  .header-inner{padding:16px 32px;gap:20px}
+  .header-ctas{gap:16px}
+  .header-ctas a{padding:12px 18px;border-radius:14px;font-size:17px}
+  .header-ctas img{width:22px;height:22px}
+  .header-ctas span{font-size:16px}
+  .hero{min-height:85vh}
+  .gallery-grid img{height:400px}
+  .services-grid{grid-template-columns:repeat(4,1fr)}
+  .service-card img{height:220px}
+  .section-title{font-size:28px}
+  .pricing-card-new{padding:20px}
+  .pricing-card-price .amount{font-size:38px}
+  .map-wrap{height:380px}
+  .footer-brand img{height:65px}
+  .footer-brand h3{font-size:26px}
+  .about-header h2{font-size:30px}
+  .about-details h3{font-size:26px}
+}
+
+/* iOS specific optimizations */
+@supports (-webkit-touch-callout: none) {
+  .btn, .header-ctas a, .pricing-card-action a{
+    -webkit-tap-highlight-color: rgba(0,188,212,0.3);
+    -webkit-touch-callout: none;
+  }
+  .gallery-grid img, .service-card img{
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Android specific optimizations */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .hero-overlay, .pricing-card-new, .service-card{
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+}
+
+/* Microsoft Edge specific optimizations */
+@supports (-ms-ime-align: auto) {
+  .header-inner, .container{
+    -ms-overflow-style: none;
+  }
+}
+
+/* High DPI displays optimization */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi){
+  .logo-box img, .gallery-grid img, .service-card img{
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse){
+  .btn:hover, .service-card:hover, .gallery-grid img:hover, .header-ctas a:hover{
+    transform: none;
+  }
+  .btn:active, .service-card:active, .gallery-grid img:active, .header-ctas a:active{
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Landscape orientation optimizations */
+@media (max-height:500px) and (orientation: landscape){
+  .hero{min-height:45vh}
+  .hero-overlay{bottom:12px;padding:8px}
+  .hero-overlay h1{font-size:16px}
+  .hero-overlay p{font-size:12px}
+  .btn{padding:5px 9px;font-size:11px}
+  .header-inner{padding:4px 8px}
+  .logo-box img{height:50px}
+  .brand-title{font-size:14px}
+  .header-tagline{font-size:10px;display:block;font-weight:600}
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark){
+  .hero-overlay{
+    background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,123,167,0.9));
+  }
+}
+
+/* Print styles */
+@media print{
+  .header-particle, .header-bubble, .header-wave, .particles, .water-wave{
+    display: none !important;
+  }
+  .hero{min-height: auto;page-break-inside: avoid}
+  .pricing-section, .contact-section{page-break-inside: avoid}
 }
 
 /* Large phones and small tablets (481px to 768px) */
@@ -2342,7 +2643,7 @@ footer img{
             </div>
             <div class="about-feature-text">
               <h4>Safety First</h4>
-              <p>100% Safe for Kids,Womensand Families</p>
+              <p>100% Safe for Kids,Ladies and Family</p>
             </div>
           </div>
           
